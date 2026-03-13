@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IXON Admin Fundamentals – User Access Management</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #F3F4FA; color: #021752; padding: 32px 24px; min-height: 100vh; }
+  .card { background: #fff; border-radius: 12px; border: 0.5px solid #d1d5db; padding: 28px 28px 32px; max-width: 860px; margin: 0 auto; }
+  .header-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .accent { width: 3px; height: 20px; background: #FACD00; border-radius: 1px; flex-shrink: 0; }
+  .header-title { font-size: 15px; font-weight: 600; color: #021752; }
+  .header-sub { font-size: 12px; color: #888; margin: 0 0 20px 13px; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 18px; flex-wrap: wrap; }
+  .tab { padding: 7px 14px; border-radius: 8px; border: 0.5px solid #9ca3af; background: transparent; color: #6b7280; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.15s; }
+  .tab.active { background: #1059D2; color: #fff; border-color: #1059D2; }
+  .tab:hover:not(.active) { background: #f3f4f6; color: #021752; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .panel-hint { font-size: 12px; color: #888; margin-bottom: 12px; }
+  .layer { display: flex; align-items: flex-start; gap: 14px; padding: 11px 14px; border: 0.5px solid #e5e7eb; border-left: 3px solid; margin-bottom: 2px; background: #f9fafb; }
+  .layer-label { font-size: 13px; font-weight: 600; min-width: 170px; color: #021752; padding-top: 2px; }
+  .layer-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip { font-size: 11px; padding: 3px 9px; border-radius: 10px; border: 0.5px solid #d1d5db; background: #fff; color: #6b7280; }
+  .arr-row { padding: 2px 0 2px 14px; color: #9ca3af; font-size: 14px; }
+  .note-box { margin-top: 8px; padding: 9px 12px; border-radius: 8px; background: #f9fafb; border: 0.5px solid #e5e7eb; font-size: 11px; color: #9ca3af; line-height: 1.5; }
+  .rules-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-top: 16px; }
+  .rule-card { padding: 12px; border: 0.5px solid #e5e7eb; border-left: 3px solid; background: #f9fafb; }
+  .rule-title { font-size: 12px; font-weight: 600; color: #021752; margin-bottom: 3px; }
+  .rule-desc { font-size: 11px; color: #6b7280; line-height: 1.4; }
+  .scenario-wrap { display: grid; grid-template-columns: 155px 1fr; gap: 12px; }
+  .sites-label { font-size: 11px; font-weight: 600; color: #9ca3af; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .site-badge { padding: 7px 11px; border-radius: 8px; border: 0.5px solid #e5e7eb; background: #f9fafb; font-size: 12px; font-weight: 500; margin-bottom: 5px; color: #021752; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .role-card { padding: 11px; border-radius: 8px; border: 0.5px solid #e5e7eb; background: #fff; }
+  .role-name { font-size: 12px; font-weight: 600; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 0.5px solid #e5e7eb; color: #021752; }
+  .role-meta { font-size: 10px; color: #9ca3af; margin-bottom: 7px; }
+  .vis-row { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6b7280; margin-bottom: 3px; }
+  .callout { margin-top: 14px; padding: 11px 13px; border: 0.5px solid #e5e7eb; border-left: 3px solid #FACD00; background: #f9fafb; }
+  .callout-title { font-size: 12px; font-weight: 600; color: #021752; margin-bottom: 3px; }
+  .callout-body { font-size: 12px; color: #6b7280; }
+  .bp-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
+  .bp-card { padding: 14px; border-radius: 12px; border: 0.5px solid #e5e7eb; background: #f9fafb; }
+  .bp-num { font-size: 20px; font-weight: 600; color: #1059D2; margin-bottom: 5px; }
+  .bp-rule { font-size: 12px; font-weight: 600; color: #021752; margin-bottom: 4px; }
+  .bp-desc { font-size: 11px; color: #6b7280; line-height: 1.4; }
+  .anti-wrap { padding: 12px; border-radius: 8px; border: 0.5px solid #e5e7eb; background: #f9fafb; }
+  .anti-title { font-size: 12px; font-weight: 600; color: #021752; margin-bottom: 8px; }
+  .anti-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .anti-item { font-size: 11px; color: #6b7280; display: flex; gap: 6px; line-height: 1.4; }
+  .steps-wrap { display: flex; flex-direction: column; }
+  .step-row { display: flex; }
+  .step-num-col { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
+  .step-circle { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; background: #fff; z-index: 1; }
+  .step-line { width: 1.5px; flex: 1; min-height: 16px; background: #e5e7eb; }
+  .step-content { padding: 2px 0 20px 12px; flex: 1; }
+  .step-title { font-size: 13px; font-weight: 600; color: #021752; margin-bottom: 5px; margin-top: 3px; line-height: 1.3; }
+  .step-body { font-size: 11px; color: #6b7280; line-height: 1.5; }
+  .step-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+  .step-chip { font-size: 10px; padding: 2px 8px; border-radius: 8px; border: 0.5px solid #d1d5db; background: #f9fafb; color: #6b7280; }
+  .hier-box { display: flex; flex-direction: column; gap: 2px; margin-top: 7px; font-size: 11px; color: #6b7280; font-family: 'Courier New', monospace; line-height: 1.5; padding: 8px 10px; background: #f9fafb; border-radius: 8px; border: 0.5px solid #e5e7eb; }
+  .step-hint { margin-top: 7px; font-size: 11px; color: #9ca3af; }
+  .assign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .assign-card { padding: 9px 11px; border-radius: 8px; border: 0.5px solid #e5e7eb; background: #f9fafb; }
+  .assign-label { font-size: 10px; font-weight: 600; color: #9ca3af; margin-bottom: 3px; }
+  .assign-value { font-size: 12px; font-weight: 600; color: #021752; }
+  .assign-sub { font-size: 10px; color: #9ca3af; margin-top: 2px; }
+  .validate-box { margin-top: 8px; padding: 9px 11px; border-radius: 8px; background: #f9fafb; border: 0.5px solid #e5e7eb; display: flex; gap: 9px; align-items: flex-start; }
+  .check-icon { width: 18px; height: 18px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .role-map { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .role-map-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #6b7280; }
+  .role-map-name { min-width: 110px; font-weight: 600; color: #021752; }
+  .arrow-sep { color: #9ca3af; }
+  strike { opacity: 0.4; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header-bar">
+    <div class="accent"></div>
+    <div class="header-title">IXON Admin Fundamentals – User Access Management</div>
+  </div>
+  <div class="header-sub">Core concepts for onboarding administrators</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab(this,'model')">Access model</button>
+    <button class="tab" onclick="showTab(this,'scenario')">Admin scenario</button>
+    <button class="tab" onclick="showTab(this,'practices')">Best practices</button>
+    <button class="tab" onclick="showTab(this,'checklist')">Quick setup checklist</button>
+  </div>
+
+  <!-- PANEL 1 -->
+  <div id="panel-model" class="panel active">
+    <div class="panel-hint">Every access decision flows through six layers — from authentication to device.</div>
+
+    <div class="layer" style="border-left-color:#7F77DD;">
+      <div><div class="layer-label">Portal authentication</div><div class="layer-sub">How users sign into IXON</div></div>
+      <div class="chips">
+        <span class="chip">Microsoft / Azure Entra (SSO)</span>
+        <span class="chip">Google SSO</span>
+        <span class="chip">IXON account (email + password)</span>
+      </div>
+    </div>
+    <div class="arr-row">↓</div>
+    <div class="layer" style="border-left-color:#378ADD;">
+      <div><div class="layer-label">Users</div><div class="layer-sub">Who is accessing</div></div>
+      <div class="chips"><span class="chip">Engineers</span><span class="chip">Operators</span><span class="chip">Vendors</span><span class="chip">Customers</span></div>
+    </div>
+    <div class="arr-row">↓</div>
+    <div class="layer" style="border-left-color:#1D9E75;">
+      <div><div class="layer-label">Roles</div><div class="layer-sub">What they can do</div></div>
+      <div class="chips"><span class="chip">Platform Admin</span><span class="chip">Engineer</span><span class="chip">Customer Admin</span><span class="chip">Vendor Technician</span><span class="chip">Operator</span><span class="chip">Read Only</span></div>
+    </div>
+    <div class="arr-row">↓</div>
+    <div class="layer" style="border-left-color:#BA7517;">
+      <div><div class="layer-label">Access categories</div><div class="layer-sub">Which resources</div></div>
+      <div class="chips"><span class="chip">VPN Access</span><span class="chip">Alarms</span><span class="chip">Dashboards</span><span class="chip">Monitoring</span><span class="chip">VNC / HTTP</span></div>
+    </div>
+    <div class="arr-row">↓</div>
+    <div class="layer" style="border-left-color:#D85A30;">
+      <div><div class="layer-label">Groups</div><div class="layer-sub">Scope containers</div></div>
+      <div class="chips"><span class="chip">Customer A</span><span class="chip">Customer B</span><span class="chip">Production Line</span><span class="chip">Showroom</span><span class="chip">Stamping Press</span></div>
+    </div>
+    <div class="arr-row">↓</div>
+    <div class="layer" style="border-left-color:#888780;">
+      <div><div class="layer-label">Devices (IXON gateways)</div><div class="layer-sub">Secure connection to the machine network</div></div>
+      <div class="chips"><span class="chip">IXrouter3 / SecureEdge</span><span class="chip">SecureEdge Pro</span><span class="chip">IXagent</span></div>
+    </div>
+    <div class="note-box">IXON gateways sit on the machine network and provide secure remote access to PLCs, HMIs, and equipment through IXON Cloud.</div>
+
+    <div class="rules-row">
+      <div class="rule-card" style="border-left-color:#D85A30;">
+        <div class="rule-title">Groups define visibility</div>
+        <div class="rule-desc">Controls which devices and resources a user can see</div>
+      </div>
+      <div class="rule-card" style="border-left-color:#1D9E75;">
+        <div class="rule-title">Roles define capability</div>
+        <div class="rule-desc">Controls what actions a user is permitted to perform</div>
+      </div>
+      <div class="rule-card" style="border-left-color:#BA7517;">
+        <div class="rule-title">Access categories define resources</div>
+        <div class="rule-desc">Ties roles to specific resource types (VPN, alarms, etc.)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div id="panel-scenario" class="panel">
+    <div class="panel-hint">Nestle – global OEM customer with five regional sites modeled as groups. Same role types, different group assignments = different visibility.</div>
+    <div class="scenario-wrap">
+      <div>
+        <div class="sites-label">Groups (sites)</div>
+        <div class="site-badge"><span class="dot" style="background:#1059D2;"></span>Ohio</div>
+        <div class="site-badge"><span class="dot" style="background:#1059D2;"></span>Texas</div>
+        <div class="site-badge"><span class="dot" style="background:#1059D2;"></span>Mexico</div>
+        <div class="site-badge"><span class="dot" style="background:#1059D2;"></span>Brazil</div>
+        <div class="site-badge"><span class="dot" style="background:#1059D2;"></span>Germany</div>
+      </div>
+      <div class="role-grid">
+        <div class="role-card" style="border-top:2px solid #7F77DD;">
+          <div class="role-name">Customer Admin</div>
+          <div class="role-meta">Sees all five sites</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Ohio</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Texas</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Mexico</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Brazil</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Germany</div>
+        </div>
+        <div class="role-card" style="border-top:2px solid #1D9E75;">
+          <div class="role-name">Site Operator</div>
+          <div class="role-meta">Assigned site only</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Ohio</div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Texas</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Mexico</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Brazil</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Germany</strike></div>
+        </div>
+        <div class="role-card" style="border-top:2px solid #BA7517;">
+          <div class="role-name">OEM Engineer</div>
+          <div class="role-meta">Machines across all sites</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Ohio</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Texas</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Mexico</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Brazil</div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Germany</div>
+        </div>
+        <div class="role-card" style="border-top:2px solid #D85A30;">
+          <div class="role-name">Vendor Technician</div>
+          <div class="role-meta">Vendor group only</div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Ohio</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#1D9E75;"></span>Texas (assigned)</div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Mexico</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Brazil</strike></div>
+          <div class="vis-row"><span class="dot" style="background:#d1d5db;"></span><strike>Germany</strike></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-title">Key insight</div>
+      <div class="callout-body">Customer Admin and OEM Engineer both see all five sites — but their roles give completely different capabilities once inside. Groups = scope. Roles = capability. These are independent axes. Never conflate them.</div>
+    </div>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div id="panel-practices" class="panel">
+    <div class="panel-hint">Three rules that keep your IXON environment scalable as customers and machines grow.</div>
+    <div class="bp-grid">
+      <div class="bp-card">
+        <div class="bp-num">01</div>
+        <div class="bp-rule">Keep roles broad and reusable</div>
+        <div class="bp-desc">One "Vendor Technician" role serves all vendors. Scope is managed by group assignment — not by creating new roles per customer.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-num">02</div>
+        <div class="bp-rule">Use groups to control scope</div>
+        <div class="bp-desc">Model your hierarchy in groups by site, division, or machine line. Adding a user to a group instantly grants visibility — no role edits needed.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-num">03</div>
+        <div class="bp-rule">Apply least privilege via access categories</div>
+        <div class="bp-desc">Assign only what the role needs — Vendor Technician gets VNC/HTTP, not Alarms. Don't grant all categories by default.</div>
+      </div>
+    </div>
+    <div class="anti-wrap">
+      <div class="anti-title">Common anti-patterns to avoid</div>
+      <div class="anti-grid">
+        <div class="anti-item"><span style="color:#E24B4A;flex-shrink:0;">✕</span>Creating a new role per customer instead of using groups</div>
+        <div class="anti-item"><span style="color:#E24B4A;flex-shrink:0;">✕</span>Assigning all access categories to every role by default</div>
+        <div class="anti-item"><span style="color:#E24B4A;flex-shrink:0;">✕</span>Skipping groups and assigning devices individually to users</div>
+        <div class="anti-item"><span style="color:#E24B4A;flex-shrink:0;">✕</span>Using Platform Admin role for standard customer logins</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 4 -->
+  <div id="panel-checklist" class="panel">
+    <div class="panel-hint">Six steps to configure your IXON environment correctly the first time. Complete in order — each step depends on the one before it.</div>
+    <div class="steps-wrap">
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#7F77DD;color:#7F77DD;">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Define your group hierarchy</div>
+          <div class="step-body">Model your environment before touching the platform. Sketch how your customers, sites, and machines are organized — groups should mirror this hierarchy.</div>
+          <div class="hier-box">
+            <span>Customer</span>
+            <span>&nbsp;&nbsp;└── Site</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Production line</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Machine type</span>
+          </div>
+          <div class="step-hint">Groups control what users can see. Get this right first.</div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#1D9E75;color:#1D9E75;">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Create reusable roles</div>
+          <div class="step-body">Roles represent job functions — not specific customers or sites. One role per function type, reused across all groups.</div>
+          <div class="step-chips">
+            <span class="step-chip">Platform Admin</span><span class="step-chip">Engineer</span><span class="step-chip">Customer Admin</span><span class="step-chip">Vendor Technician</span><span class="step-chip">Operator</span><span class="step-chip">Read Only</span>
+          </div>
+          <div class="step-hint">Avoid: "Nestle Admin" or "TOMCO Engineer" — keep roles generic.</div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#BA7517;color:#BA7517;">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Define access categories</div>
+          <div class="step-body">Access categories map to the specific platform resources each role will need.</div>
+          <div class="step-chips">
+            <span class="step-chip">VPN Access</span><span class="step-chip">Alarms</span><span class="step-chip">Dashboards</span><span class="step-chip">Monitoring</span><span class="step-chip">VNC / HTTP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#D85A30;color:#D85A30;">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Assign access categories to roles</div>
+          <div class="step-body">Link each role to only the categories it needs. Apply least privilege.</div>
+          <div class="role-map">
+            <div class="role-map-row"><span class="role-map-name">Vendor Technician</span><span class="arrow-sep">→</span><div class="chips"><span class="chip">VNC / HTTP</span></div></div>
+            <div class="role-map-row"><span class="role-map-name">Engineer</span><span class="arrow-sep">→</span><div class="chips"><span class="chip">VPN Access</span><span class="chip">VNC / HTTP</span><span class="chip">Monitoring</span></div></div>
+            <div class="role-map-row"><span class="role-map-name">Operator</span><span class="arrow-sep">→</span><div class="chips"><span class="chip">Dashboards</span><span class="chip">Alarms</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#378ADD;color:#378ADD;">5</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Add users</div>
+          <div class="step-body">Each user needs exactly two assignments to function correctly.</div>
+          <div class="assign-grid">
+            <div class="assign-card">
+              <div class="assign-label">Required assignment 1</div>
+              <div class="assign-value">A role</div>
+              <div class="assign-sub">Defines what they can do</div>
+            </div>
+            <div class="assign-card">
+              <div class="assign-label">Required assignment 2</div>
+              <div class="assign-value">One or more groups</div>
+              <div class="assign-sub">Defines what they can see</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-col">
+          <div class="step-circle" style="border-color:#1D9E75;color:#1D9E75;">6</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Validate access</div>
+          <div class="step-body">Never assume access is working as intended — test before handing off to the customer.</div>
+          <div class="validate-box">
+            <div class="check-icon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:#021752;margin-bottom:2px;">Use a test account or incognito browser</div>
+              <div style="font-size:11px;color:#6b7280;">Log in as a user with a restricted role and confirm they see only their assigned groups and can only access their assigned categories. Fix before going live.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
