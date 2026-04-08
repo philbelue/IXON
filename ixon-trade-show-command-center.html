@@ -2256,100 +2256,151 @@ function autoPush() {
   _syncTimer = setTimeout(() => pushToSheets(true), 3000);
 }
 
-async function pushToSheets(quiet) {
+// ── PUSH TO SHEETS (iframe form submission — bypasses CORS) ──
+function pushToSheets(quiet) {
   if (!state.sheetsUrl) return;
   const btn = document.getElementById("syncBtn");
   if (!quiet) { btn.classList.add("sync-active"); btn.innerHTML = "&#8987;"; }
   try {
-    const payload = JSON.stringify({action: "sync", data: buildPayload()});
-    // Use fetch with redirect:follow — Apps Script returns 302 to exec URL
-    const resp = await fetch(state.sheetsUrl, {
-      method: "POST",
-      redirect: "follow",
-      headers: {"Content-Type": "text/plain;charset=utf-8"},
-      body: payload
-    });
-    // Try to parse response to verify success
-    let ok = false;
-    try {
-      const text = await resp.text();
-      if (text.includes('"ok"') || resp.ok) ok = true;
-    } catch(e2) { ok = resp.ok || resp.type === "opaque"; }
-    if (ok) {
+    // Remove old iframe/form if they exist
+    var oldFrame = document.getElementById("_syncFrame");
+    if (oldFrame) oldFrame.remove();
+    var oldForm = document.getElementById("_syncForm");
+    if (oldForm) oldForm.remove();
+
+    // Create hidden iframe to receive the response
+    var iframe = document.createElement("iframe");
+    iframe.id = "_syncFrame";
+    iframe.name = "_syncFrame";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    // Create form targeting the iframe
+    var form = document.createElement("form");
+    form.id = "_syncForm";
+    form.method = "POST";
+    form.action = state.sheetsUrl;
+    form.target = "_syncFrame";
+    form.style.display = "none";
+
+    // Add payload as hidden input
+    var input = document.createElement("textarea");
+    input.name = "payload";
+    input.value = JSON.stringify({action: "sync", data: buildPayload()});
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    // Listen for iframe load (means form submitted successfully)
+    iframe.onload = function() {
       _lastSync = new Date();
       updateSyncIndicator("ok");
       if (!quiet) {
         btn.innerHTML = "&#10003;";
-        setTimeout(() => { btn.innerHTML = "&#8635;"; btn.classList.remove("sync-active"); }, 2000);
+        setTimeout(function() { btn.innerHTML = "&#8635;"; btn.classList.remove("sync-active"); }, 2000);
       }
-    } else { throw new Error("Sync response not OK"); }
+      // Cleanup after a delay
+      setTimeout(function() {
+        var f = document.getElementById("_syncFrame");
+        if (f) f.remove();
+        var fm = document.getElementById("_syncForm");
+        if (fm) fm.remove();
+      }, 5000);
+    };
+
+    iframe.onerror = function() {
+      updateSyncIndicator("error");
+      if (!quiet) {
+        btn.innerHTML = "&#10007;";
+        setTimeout(function() { btn.innerHTML = "&#8635;"; btn.classList.remove("sync-active"); }, 2000);
+        alert("Sync failed — check your Apps Script URL in Settings");
+      }
+    };
+
+    // Submit the form
+    form.submit();
   } catch(e) {
     updateSyncIndicator("error");
     if (!quiet) {
       btn.innerHTML = "&#10007;";
-      setTimeout(() => { btn.innerHTML = "&#8635;"; btn.classList.remove("sync-active"); }, 2000);
+      setTimeout(function() { btn.innerHTML = "&#8635;"; btn.classList.remove("sync-active"); }, 2000);
       alert("Sync failed: " + e.message);
     }
   }
 }
 
 // Manual sync button — full push
-async function syncToSheets() {
+function syncToSheets() {
   if (!state.sheetsUrl) { openSettings(); return; }
-  await pushToSheets(false);
+  pushToSheets(false);
 }
 
-// ── LOAD FROM SHEETS (Team Shared Data) ──
-async function loadFromSheets() {
+// ── LOAD FROM SHEETS (JSONP — bypasses CORS) ──
+function loadFromSheets() {
   if (!state.sheetsUrl) return;
   updateSyncIndicator("loading");
-  try {
-    const resp = await fetch(state.sheetsUrl + "?nocache=" + Date.now(), {redirect: "follow"});
-    const json = await resp.json();
-    if (json.status === "ok" && json.data && json.data.length > 0) {
-      let merged = 0;
-      json.data.forEach(row => {
-        const id = parseInt(row.ID || row.id);
-        if (!id) return;
-        const remote = {
-          status: row.Status || row.status || "pending",
-          interest: row.Interest || row.interest || "",
-          contactName: row["Contact Name"] || row.contactName || "",
-          contactInfo: row["Contact Info"] || row.contactInfo || "",
-          convoNotes: row["Conversation Notes"] || row.convoNotes || "",
-          nextStep: row["Next Step"] || row.nextStep || "",
-          updatedBy: row["Updated By"] || row.updatedBy || "",
-          updatedAt: row["Updated At"] || row.updatedAt || "",
-        };
-        const local = state.data[id] || {};
-        // Merge strategy: remote wins UNLESS local is newer
-        const localTime = local.updatedAt ? new Date(local.updatedAt).getTime() : 0;
-        const remoteTime = remote.updatedAt ? new Date(remote.updatedAt).getTime() : 0;
-        if (remoteTime > localTime) {
-          // Remote is newer — take remote data
-          if (remote.status && remote.status !== "pending") {
-            state.data[id] = { ...local, ...remote };
-            merged++;
-          } else if (remote.contactName || remote.convoNotes || remote.nextStep) {
-            state.data[id] = { ...local, ...remote };
-            merged++;
+
+  // Create a unique callback name
+  var cbName = "_sheetsCb_" + Date.now();
+
+  // Define the callback on window
+  window[cbName] = function(json) {
+    try {
+      if (json.status === "ok" && json.data && json.data.length > 0) {
+        var merged = 0;
+        json.data.forEach(function(row) {
+          var id = parseInt(row.ID || row.id);
+          if (!id) return;
+          var remote = {
+            status: row.Status || row.status || "pending",
+            interest: row.Interest || row.interest || "",
+            contactName: row["Contact Name"] || row.contactName || "",
+            contactInfo: row["Contact Info"] || row.contactInfo || "",
+            convoNotes: row["Conversation Notes"] || row.convoNotes || "",
+            nextStep: row["Next Step"] || row.nextStep || "",
+            updatedBy: row["Updated By"] || row.updatedBy || "",
+            updatedAt: row["Updated At"] || row.updatedAt || "",
+          };
+          var local = state.data[id] || {};
+          var localTime = local.updatedAt ? new Date(local.updatedAt).getTime() : 0;
+          var remoteTime = remote.updatedAt ? new Date(remote.updatedAt).getTime() : 0;
+          if (remoteTime > localTime) {
+            if ((remote.status && remote.status !== "pending") || remote.contactName || remote.convoNotes || remote.nextStep) {
+              state.data[id] = Object.assign({}, local, remote);
+              merged++;
+            }
           }
+        });
+        if (merged > 0) {
+          save();
+          render();
         }
-      });
-      if (merged > 0) {
-        save(); // persist merged data locally
-        render();
+        updateSyncIndicator("ok");
+        _lastSync = new Date();
+      } else {
+        updateSyncIndicator("ok");
       }
-      updateSyncIndicator("ok");
-      _lastSync = new Date();
-    } else {
-      updateSyncIndicator("ok");
+    } catch(e) {
+      console.warn("Sheet merge failed:", e);
+      updateSyncIndicator("error");
     }
-  } catch(e) {
-    // Silent fail on load — don't block the app
-    console.warn("Sheet load failed:", e);
+    // Cleanup
+    delete window[cbName];
+    var s = document.getElementById(cbName);
+    if (s) s.remove();
+  };
+
+  // Inject script tag (JSONP)
+  var script = document.createElement("script");
+  script.id = cbName;
+  script.src = state.sheetsUrl + "?callback=" + cbName + "&nocache=" + Date.now();
+  script.onerror = function() {
+    console.warn("Sheet load failed (JSONP)");
     updateSyncIndicator("offline");
-  }
+    delete window[cbName];
+    var s = document.getElementById(cbName);
+    if (s) s.remove();
+  };
+  document.body.appendChild(script);
 }
 
 function updateSyncIndicator(status) {
