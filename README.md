@@ -1,2 +1,5 @@
-# IXON
-IXON platform user access management — interactive onboarding guide for administrators
+# Phil Belue
+
+Personal public page — projects, experiments, and public work.
+
+Live at: https://philbelue.github.io/philbelue/
