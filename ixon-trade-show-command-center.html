@@ -1631,6 +1631,7 @@ let state = {
   sortBy: "hall",
   data: {},
   syncBlobId: "",
+  userName: "",
   customLeads: []
 };
 
@@ -1642,9 +1643,34 @@ function init() {
   if (config) {
     const c = JSON.parse(config);
     state.syncBlobId = c.syncBlobId || "";
+    state.userName = c.userName || "";
   }
   const custom = localStorage.getItem(SHOW_CONFIG.storageKey + "_custom");
   if (custom) state.customLeads = JSON.parse(custom);
+
+  // Check URL for invite link: ?sync=XXXXX
+  const urlParams = new URLSearchParams(window.location.search);
+  const inviteSync = urlParams.get("sync");
+  if (inviteSync && inviteSync !== state.syncBlobId) {
+    state.syncBlobId = inviteSync;
+    if (!state.userName) {
+      const name = prompt("Welcome to the MODEX Command Center!\\nEnter your name:");
+      if (name) state.userName = name.trim();
+    }
+    localStorage.setItem(SHOW_CONFIG.storageKey + "_config", JSON.stringify({syncBlobId: state.syncBlobId, userName: state.userName}));
+    // Clean URL without reloading
+    window.history.replaceState({}, "", window.location.pathname);
+  }
+
+  // If we have a sync ID but no name, ask once
+  if (state.syncBlobId && !state.userName) {
+    const name = prompt("Enter your name for the team sync:");
+    if (name) {
+      state.userName = name.trim();
+      localStorage.setItem(SHOW_CONFIG.storageKey + "_config", JSON.stringify({syncBlobId: state.syncBlobId, userName: state.userName}));
+    }
+  }
+
   renderAEBar();
   renderFilters();
   renderSortBar();
@@ -2099,7 +2125,7 @@ function setStatus(id, status) {
   if (!state.data[id]) state.data[id] = {};
   state.data[id].status = state.data[id].status === status ? null : status;
   state.data[id].updatedAt = new Date().toISOString();
-  state.data[id].updatedBy = state.currentAE !== "All" ? state.currentAE : "Unknown";
+  state.data[id].updatedBy = state.userName || (state.currentAE !== "All" ? state.currentAE : "Unknown");
   save();
   render();
 }
@@ -2138,23 +2164,41 @@ function getTerritoryClass(t) {
 function openSettings() {
   const overlay = document.getElementById("settingsOverlay");
   document.getElementById("settingsPanelTitle").textContent = "Settings";
+  const inviteUrl = state.syncBlobId ? window.location.origin + window.location.pathname + "?sync=" + state.syncBlobId : "";
   document.getElementById("settingsPanelContent").innerHTML = `
     <div class="settings-field">
-      <div class="settings-label">Team Sync ID</div>
-      <input class="settings-input" id="syncBlobInput" placeholder="Paste sync ID from teammate..." value="${state.syncBlobId}">
-      <div style="font-size:11px;color:var(--gray);margin-top:4px">${state.syncBlobId ? 'Syncing to shared cloud storage. Share this ID with your team.' : 'Paste an ID from a teammate, or create a new sync below.'}</div>
+      <div class="settings-label">Your Name</div>
+      <input class="settings-input" id="userNameInput" placeholder="e.g. Phil, Abby, Bryce..." value="${state.userName || ''}">
+      <div style="font-size:11px;color:var(--gray);margin-top:4px">Shows who made each update</div>
     </div>
-    ${!state.syncBlobId ? '<button class="settings-save" style="background:var(--ixon-blue);color:white;margin-bottom:8px" onclick="createNewSync()">&#9729; Create New Team Sync</button>' : '<button class="settings-save" style="background:#059669;color:white;margin-bottom:8px" onclick="copySyncId()">&#128203; Copy Sync ID for Team</button>'}
+    <div class="settings-field" style="margin-top:12px">
+      <div class="settings-label">Team Sync ID</div>
+      <input class="settings-input" id="syncBlobInput" placeholder="Auto-created when you start sync..." value="${state.syncBlobId}" style="font-size:12px;color:var(--gray)">
+    </div>
+    ${!state.syncBlobId ?
+      '<button class="settings-save" style="background:var(--ixon-blue);color:white;margin-bottom:8px" onclick="createNewSync()">&#9729; Create New Team Sync</button>' :
+      '<button class="settings-save" style="background:#059669;color:white;margin-bottom:8px" onclick="copyInviteLink()">&#128279; Copy Invite Link for Team</button>'}
     <button class="settings-save" onclick="saveSettings()">Save Settings</button>
+    ${state.syncBlobId ? '<div style="margin-top:10px;padding:10px;background:var(--ixon-light-blue);border-radius:6px;font-size:11px;color:var(--ixon-dark);line-height:1.5"><strong>Invite link:</strong><br><span style="word-break:break-all;font-size:10px">' + inviteUrl + '</span><br><br>Text this to your team. They open it, enter their name, and they\'re synced. That\'s it.</div>' : ''}
   `;
   overlay.classList.add("open");
 }
 
 function saveSettings() {
   state.syncBlobId = document.getElementById("syncBlobInput").value.trim();
-  localStorage.setItem(SHOW_CONFIG.storageKey + "_config", JSON.stringify({syncBlobId: state.syncBlobId}));
+  state.userName = (document.getElementById("userNameInput") || {}).value || state.userName || "";
+  localStorage.setItem(SHOW_CONFIG.storageKey + "_config", JSON.stringify({syncBlobId: state.syncBlobId, userName: state.userName}));
   closeSettings();
   if (state.syncBlobId) loadFromCloud();
+}
+
+function copyInviteLink() {
+  const url = window.location.origin + window.location.pathname + "?sync=" + state.syncBlobId;
+  navigator.clipboard.writeText(url).then(() => {
+    alert("Invite link copied!\\n\\nText this to Abby & the team. They open it, enter their name, and they're synced.");
+  }).catch(() => {
+    prompt("Copy this invite link:", url);
+  });
 }
 
 function createNewSync() {
@@ -2162,34 +2206,30 @@ function createNewSync() {
   btn.textContent = "Creating...";
   btn.disabled = true;
   const payload = JSON.stringify({data: state.data, customLeads: state.customLeads, updated: new Date().toISOString()});
-  fetch("https://jsonblob.com/api/jsonBlob", {
+  fetch("https://api.npoint.io/", {
     method: "POST",
-    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    headers: {"Content-Type": "application/json"},
     body: payload
   }).then(r => {
-    if (!r.ok) throw new Error("Failed to create sync");
-    const loc = r.headers.get("Location") || "";
-    const blobId = loc.split("/").pop();
-    if (!blobId) throw new Error("No blob ID returned");
-    state.syncBlobId = blobId;
+    if (!r.ok) throw new Error("Server returned " + r.status);
+    return r.json();
+  }).then(result => {
+    const binId = result.id || result._id || "";
+    if (!binId) throw new Error("No sync ID in response");
+    state.syncBlobId = binId;
     localStorage.setItem(SHOW_CONFIG.storageKey + "_config", JSON.stringify({syncBlobId: state.syncBlobId}));
-    document.getElementById("syncBlobInput").value = blobId;
+    document.getElementById("syncBlobInput").value = binId;
     _lastSync = new Date();
     updateSyncIndicator("ok");
-    alert("Team Sync created! Share this ID with your team:\\n\\n" + blobId);
-    openSettings(); // refresh UI to show copy button
+    alert("Team Sync created! Share this ID with your team:\\n\\n" + binId);
+    openSettings();
   }).catch(e => {
     btn.textContent = "Create New Team Sync";
     btn.disabled = false;
-    alert("Failed to create sync: " + e.message);
+    alert("Failed to create sync: " + e.message + "\\n\\nTry again or check your internet connection.");
   });
 }
 
-function copySyncId() {
-  navigator.clipboard.writeText(state.syncBlobId).then(() => {
-    alert("Sync ID copied! Share it with Abby and the team so they can paste it in Settings.");
-  });
-}
 
 function closeSettings(e) {
   if (!e || e.target.classList.contains("settings-overlay")) {
@@ -2268,7 +2308,7 @@ function copyJSON() {
 // ── CLOUD SYNC (jsonblob.com — zero auth, zero CORS issues) ──
 let _syncTimer = null;
 let _lastSync = null;
-const BLOB_API = "https://jsonblob.com/api/jsonBlob";
+const BLOB_API = "https://api.npoint.io";
 
 function buildSyncPayload() {
   return {
@@ -2292,8 +2332,8 @@ function pushToCloud(quiet) {
   if (!quiet) { btn.classList.add("sync-active"); btn.innerHTML = "&#8987;"; }
 
   fetch(BLOB_API + "/" + state.syncBlobId, {
-    method: "PUT",
-    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(buildSyncPayload())
   }).then(r => {
     if (!r.ok) throw new Error("HTTP " + r.status);
@@ -2322,8 +2362,8 @@ function syncToSheets() {
 
   // Push local changes first, then pull remote
   fetch(BLOB_API + "/" + state.syncBlobId, {
-    method: "PUT",
-    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(buildSyncPayload())
   }).then(() => loadFromCloud())
     .catch(e => {
