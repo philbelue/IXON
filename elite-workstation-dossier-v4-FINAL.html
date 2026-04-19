@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flagship i9-13900K Workstation · Drop-In-Ready · $2,300 Firm · Charlotte Local</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #f1f1ef; min-height: 100vh; color: #1a1a1a; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  .page { max-width: 880px; margin: 0 auto; padding: 48px 32px 64px; }
+
+  /* HEADER */
+  .masthead { padding: 32px 0 36px; border-bottom: 1px solid #e0e0e0; margin-bottom: 36px; }
+  .masthead-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .masthead h1 { font-size: 34px; font-weight: 800; color: #111; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
+  .masthead h1 .accent { color: #16a34a; }
+  .masthead-specs { font-size: 14px; color: #666; font-weight: 400; letter-spacing: 0.3px; margin-bottom: 20px; }
+  .masthead-statement { font-size: 14px; line-height: 1.7; color: #444; max-width: 680px; }
+  .masthead-meta { display: flex; gap: 28px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; }
+  .meta-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 4px; }
+  .meta-value { font-size: 15px; font-weight: 700; color: #111; }
+  .meta-value.green { color: #16a34a; }
+
+  /* DEAL BANNER */
+  .deal-banner { background: linear-gradient(135deg, #0f0f0f 0%, #2a2a2a 100%); border-radius: 14px; padding: 32px 36px; margin-bottom: 32px; color: #fff; }
+  .deal-banner-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #777; margin-bottom: 10px; }
+  .deal-price { font-size: 52px; font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1; }
+  .deal-price .firm { font-size: 18px; color: #16a34a; font-weight: 700; margin-left: 10px; letter-spacing: 0; }
+  .deal-price-sub { font-size: 13px; color: #999; margin-top: 8px; }
+  .deal-stats { display: flex; gap: 1px; background: #333; border-radius: 8px; overflow: hidden; margin-top: 22px; }
+  .deal-stat { flex: 1; text-align: center; padding: 14px 12px; background: #1a1a1a; }
+  .deal-stat-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #777; margin-bottom: 3px; }
+  .deal-stat-val { font-size: 18px; font-weight: 800; color: #fff; }
+  .deal-stat-sub { font-size: 10px; color: #666; margin-top: 2px; }
+
+  /* STEAL CALLOUT */
+  .steal { background: #f0f7f2; border: 1.5px solid #c6e4ce; border-radius: 10px; padding: 22px 26px; margin-bottom: 28px; }
+  .steal-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #16a34a; margin-bottom: 8px; }
+  .steal h3 { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 10px; }
+  .steal p { font-size: 13px; color: #333; line-height: 1.65; margin-bottom: 8px; }
+  .steal p:last-child { margin-bottom: 0; }
+  .steal strong { color: #16a34a; font-weight: 700; }
+
+  /* GPU READY */
+  .gpu-callout { background: #fdf4e8; border: 1.5px solid #e8d5a8; border-radius: 10px; padding: 22px 26px; margin-bottom: 28px; }
+  .gpu-callout-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a6d3b; margin-bottom: 8px; }
+  .gpu-callout h3 { font-size: 16px; font-weight: 800; color: #5d4a1e; margin-bottom: 10px; }
+  .gpu-callout p { font-size: 12.5px; color: #6b5a3a; line-height: 1.65; margin-bottom: 10px; }
+  .gpu-callout p:last-child { margin-bottom: 0; }
+  .gpu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .gpu-tag { background: #fff; border: 1px solid #e8d5a8; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; color: #8a6d3b; }
+  .gpu-tag.amd { color: #a12b2b; border-color: #e8b5b5; }
+
+  /* HIGHLIGHTS */
+  .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e5e5e5; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; margin-bottom: 36px; }
+  .hl-item { background: #fff; padding: 18px 20px; text-align: center; }
+  .hl-icon { font-size: 18px; margin-bottom: 6px; }
+  .hl-text { font-size: 11px; font-weight: 700; color: #111; line-height: 1.4; letter-spacing: 0.2px; }
+  .hl-sub { font-size: 10px; color: #777; margin-top: 3px; font-weight: 500; }
+
+  /* SECTION LABEL */
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; margin-top: 8px; }
+
+  /* COMPONENT CARDS */
+  .comp { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+  .comp.expanded { border-color: #c6e4ce; box-shadow: 0 2px 12px rgba(22,163,74,0.08); }
+  .comp-head { display: flex; align-items: center; padding: 18px 24px; cursor: pointer; gap: 16px; user-select: none; }
+  .comp-head:hover { background: #fafafa; }
+  .comp-score { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; font-weight: 800; }
+  .comp-score.excellent { background: #f0f7f2; color: #16a34a; border: 1.5px solid #c6e4ce; }
+  .comp-score.very-good { background: #f0f4ff; color: #3b5bdb; border: 1.5px solid #c5d2f0; }
+  .comp-score.bonus { background: #fdf4e8; color: #b8860b; border: 1.5px solid #e8d5a8; }
+  .comp-mid { flex: 1; min-width: 0; }
+  .comp-title { font-size: 14.5px; font-weight: 700; color: #111; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .comp-subtitle { font-size: 12px; color: #888; margin-top: 2px; }
+  .tag-dot { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; white-space: nowrap; }
+  .tag-dot.green { color: #16a34a; background: #f0f7f2; }
+  .tag-dot.gold { color: #b8860b; background: #fdf4e8; }
+  .tag-dot.red { color: #a12b2b; background: #fde8e8; }
+  .comp-pricing { text-align: right; flex-shrink: 0; }
+  .comp-ask-price { font-size: 16px; font-weight: 700; color: #111; }
+  .comp-floor-price { font-size: 10px; color: #aaa; margin-top: 1px; }
+  .comp-arrow { font-size: 14px; color: #ccc; transition: transform 0.2s; flex-shrink: 0; margin-left: 4px; }
+  .comp-arrow.open { transform: rotate(180deg); color: #16a34a; }
+
+  .comp-body { display: none; padding: 0 24px 24px; }
+  .comp.expanded .comp-body { display: block; }
+  .metrics { border-top: 1px solid #f0f0f0; padding-top: 16px; }
+  .m-row { display: flex; align-items: baseline; padding: 6px 0; gap: 10px; }
+  .m-row + .m-row { border-top: 1px solid #f8f8f8; }
+  .m-icon { width: 14px; font-size: 11px; text-align: center; flex-shrink: 0; }
+  .m-icon.pass { color: #16a34a; }
+  .m-icon.info { color: #999; }
+  .m-icon.warn { color: #b8860b; }
+  .m-label { flex: 0 0 190px; font-size: 12px; color: #888; font-weight: 500; }
+  .m-val { flex: 1; font-size: 12px; color: #222; font-weight: 600; line-height: 1.5; }
+  .m-val a { color: #3b5bdb; text-decoration: none; }
+  .m-val a:hover { text-decoration: underline; }
+  .m-verdict { font-size: 11px; font-weight: 600; color: #16a34a; white-space: nowrap; }
+
+  .insight { background: #f9f9f9; border-left: 3px solid #16a34a; padding: 12px 16px; margin-top: 14px; border-radius: 0 6px 6px 0; }
+  .insight-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #16a34a; text-transform: uppercase; margin-bottom: 4px; }
+  .insight p { font-size: 12px; color: #333; line-height: 1.6; }
+  .insight.gold { border-left-color: #b8860b; }
+  .insight.gold .insight-label { color: #b8860b; }
+
+  /* TABLES */
+  .data-table { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; }
+  .data-table h3 { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 16px; }
+  .dt-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 12px 24px; padding: 10px 0; border-bottom: 1px solid #f2f2f2; font-size: 12px; align-items: baseline; }
+  .dt-row:last-child { border-bottom: none; }
+  .dt-row.header { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #999; padding-bottom: 14px; }
+  .dt-row.total { border-top: 2px solid #111; border-bottom: none; margin-top: 10px; padding-top: 14px; font-weight: 800; font-size: 14px; color: #16a34a; }
+  .dt-name { color: #333; font-weight: 500; }
+  .dt-val { color: #111; font-weight: 600; text-align: right; }
+  .dt-val.muted { color: #999; font-weight: 400; }
+
+  /* PAYMENT BLOCK */
+  .payment { background: #0f0f0f; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; color: #fff; }
+  .payment-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .payment h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 14px; }
+  .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; margin-bottom: 16px; }
+  .payment-item { font-size: 12px; color: #ccc; line-height: 1.6; }
+  .payment-item strong { color: #16a34a; display: block; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+  .payment-note { font-size: 11px; color: #888; border-top: 1px solid #2a2a2a; padding-top: 14px; margin-top: 4px; line-height: 1.6; }
+
+  /* BUNDLE */
+  .bundle { background: linear-gradient(135deg, #0f3d1f 0%, #1a6638 100%); border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; color: #fff; }
+  .bundle-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #a8d9b8; margin-bottom: 10px; }
+  .bundle h3 { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .bundle p { font-size: 13px; color: #cfe8d7; line-height: 1.6; margin-bottom: 14px; }
+  .bundle-price { display: flex; align-items: baseline; gap: 14px; }
+  .bundle-price .big { font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+  .bundle-price .vs { font-size: 16px; color: #cfe8d7; text-decoration: line-through; }
+  .bundle-price .save { font-size: 13px; color: #fff; font-weight: 700; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 4px; letter-spacing: 0.3px; }
+
+  /* FOOTER */
+  .page-footer { text-align: center; padding: 28px 0 8px; }
+  .footer-line { font-size: 10px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-invite { font-size: 12px; color: #555; margin-top: 12px; line-height: 1.65; padding: 16px 24px; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; display: inline-block; max-width: 560px; }
+
+  @media (max-width: 700px) {
+    .page { padding: 24px 16px 48px; }
+    .masthead h1 { font-size: 26px; }
+    .deal-price { font-size: 40px; }
+    .highlights { grid-template-columns: repeat(2, 1fr); }
+    .dt-row { grid-template-columns: 1fr 1fr; }
+    .dt-row > :nth-child(3) { display: none; }
+    .payment-grid { grid-template-columns: 1fr; }
+    .comp-head { padding: 14px 16px; gap: 12px; }
+    .comp-body { padding: 0 16px 18px; }
+    .data-table { padding: 20px; }
+    .m-label { flex: 0 0 130px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-label">System Dossier · Charlotte, NC · April 2026 · Local Pickup Only</div>
+    <h1>Flagship i9-13900K Workstation. <span class="accent">Drop-In Ready.</span></h1>
+    <div class="masthead-specs">24-core · 64GB DDR5-6400 (Hynix M-die) · 7TB mixed storage · 1300W ATX 3.1 PSU · NZXT H710i + 280mm AIO</div>
+    <p class="masthead-statement">
+      Original single-adult-owner sale. Smoke-free, child-free home. <strong>Never overclocked. Never redlined.</strong>
+      Babied since day one — cable-managed, bench-tested, receipts on every component.
+      Previously ran a <strong>PNY RTX 4090</strong> (sold separately April 8, 2026 — 3rd-party inspected &amp; graded <strong>"Flawless"</strong>, proof available).
+      Intel factory warranty runs through <strong style="color:#16a34a">June 2028</strong>. MSI PSU warranty runs through <strong style="color:#16a34a">2033</strong>.
+      Built-in 1300W ATX 3.1 PSU with native 12V-2×6 is ready for any RTX 40/50-series or top-tier AMD card you drop in.
+    </p>
+    <div class="masthead-meta">
+      <div><div class="meta-label">Ask</div><div class="meta-value green">$2,300 firm</div></div>
+      <div><div class="meta-label">Retail Replacement</div><div class="meta-value">~$3,700+</div></div>
+      <div><div class="meta-label">Prior GPU Sold</div><div class="meta-value">$1,860 · 3rd-party verified</div></div>
+      <div><div class="meta-label">Components</div><div class="meta-value">11 · all documented</div></div>
+    </div>
+  </div>
+
+  <!-- DEAL BANNER -->
+  <div class="deal-banner">
+    <div class="deal-banner-label">Private Sale · Cash/Zelle · SafeTrade Meet</div>
+    <div class="deal-price">$2,300 <span class="firm">FIRM</span></div>
+    <div class="deal-price-sub">No OBO · No trades · First cash in hand takes it</div>
+    <div class="deal-stats">
+      <div class="deal-stat">
+        <div class="deal-stat-label">Listed Ask</div>
+        <div class="deal-stat-val">$2,300</div>
+        <div class="deal-stat-sub">Firm</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Retail Replacement</div>
+        <div class="deal-stat-val">$3,700+</div>
+        <div class="deal-stat-sub">New in Apr 2026</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Prior GPU Sold</div>
+        <div class="deal-stat-val">$1,860</div>
+        <div class="deal-stat-sub">3rd-party verified</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Meet Location</div>
+        <div class="deal-stat-val">Charlotte</div>
+        <div class="deal-stat-sub">Local pickup only</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY I'M SELLING -->
+  <div class="steal" style="background:#f5f7fa; border-color:#d5dbe3;">
+    <div class="steal-label" style="color:#3b5bdb;">Why I'm Selling</div>
+    <h3>Lifestyle pivot. Not a flaw in the machine.</h3>
+    <p>
+      I moved my daily workflow fully into the Apple ecosystem — Mac Studio for local LLM inference and sales ops, MacBook Pro for mobile, iPad + iPhone + multiple HomePods + Apple TVs for the rest of life. The <strong>Xbox Series X on an 85" gaming TV in my living room hasn't been touched in months</strong>. My time goes to work (industrial IoT sales), AI, my relationship, and other hobbies. This tower has been sitting in a clean climate-controlled apartment collecting dust.
+    </p>
+    <p>
+      I'd rather it go to someone who'll actually push it than keep it under my desk. Liquidating the tower (and Corsair Xeneon Flex OLED separately) to fund a pair of Apple Studio Displays. Straightforward capital redeployment.
+    </p>
+  </div>
+
+  <!-- BUILD HISTORY - PROACTIVE DISCLOSURE -->
+  <div class="steal" style="background:#fdf4e8; border-color:#e8d5a8;">
+    <div class="steal-label" style="color:#8a6d3b;">Build History · Full Disclosure</div>
+    <h3>Previously ran a PNY RTX 4090 — sold separately, 3rd-party inspected "Flawless"</h3>
+    <p>
+      <strong>Previous GPU:</strong> PNY GeForce RTX 4090. Sold <strong>April 8, 2026 to ItsWorthMore.com</strong> for <strong>$1,860</strong> (Offer #2679784). Inspected and graded <strong>"Flawless"</strong> by their verification team. Payment cleared via Zelle the same week. <em>Proof email available to serious buyers on request.</em> What this tells you: the machine's internals were inspected by a third party and passed without issue. The card was pulled cleanly — there is no hidden damage or sketchy history.
+    </p>
+    <p>
+      <strong>Build origin:</strong> Originally shipped as an NZXT BLD professional build in <strong>May 2022</strong>. Of the 10 original components, <strong>7 have been replaced</strong> with new parts between 2023–2025: CPU, motherboard, RAM, PSU, both primary NVMe drives, and the GPU. Only the <strong>H710i chassis</strong>, <strong>Kraken Z63 AIO</strong>, and <strong>three Aer RGB 2 fans</strong> remain from the original 2022 configuration. <em>Original NZXT BLD receipt (Order #328903) available on request.</em>
+    </p>
+  </div>
+
+  <!-- MARKET CONTEXT - AI ARMS RACE -->
+  <div class="steal" style="background:#0f0f0f; border-color:#2a2a2a; color:#fff;">
+    <div class="steal-label" style="color:#16a34a;">Market Context · Why Prices Aren't Coming Down</div>
+    <h3 style="color:#fff;">This isn't a supply-chain blip. It's a global AI arms race.</h3>
+    <p style="color:#ccc;">
+      Every hyperscaler on earth — <strong style="color:#fff;">AWS, Microsoft, Google, Meta, xAI, Oracle, Anthropic</strong> — is buying every HBM wafer Samsung, SK Hynix, and Micron can produce. Every other week a new datacenter or AI warehouse breaks ground (including right here in the Carolinas). <strong style="color:#16a34a;">HBM3e consumes ~3× the wafer capacity per bit that consumer DDR5 does</strong> — and the fabs are fixed. Samsung, Hynix, and Micron have all shifted allocation away from consumer DRAM and NAND toward enterprise AI memory.
+    </p>
+    <p style="color:#ccc;">
+      <strong style="color:#fff;">Fab capacity can't magically expand.</strong> A new leading-edge fab takes 18–24 months to build and another 12 months to ramp. We don't have the infrastructure, we don't have the trained technicians, we don't have the tooling. <strong style="color:#16a34a;">DDR5 spot prices are up ~307% since September 2025.</strong> NAND contract pricing is up 33–40% quarter-over-quarter. <strong style="color:#16a34a;">Micron exited consumer SSDs entirely in February 2026.</strong> Samsung has quietly discontinued entire SATA SKUs. Analysts at TrendForce are modeling elevated prices through 2028.
+    </p>
+    <p style="color:#ccc;">
+      <strong style="color:#fff;">Translation for a buyer:</strong> the tower in front of you costs $3,700+ to rebuild today, and that figure is going up, not down. Every month you wait to buy a machine like this, the replacement cost climbs. This is why I'm firm at $2,300 — and why it's still a deal.
+    </p>
+  </div>
+
+  <!-- WHY IT'S A STEAL -->
+  <div class="steal">
+    <div class="steal-label">Why this is a steal at $2,300</div>
+    <h3>I don't have time to part it out. You do? That's your upside.</h3>
+    <p>
+      Retail replacement cost across 11 components is <strong>~$3,700+ today</strong> (post-NAND shortage, post-DDR5 shortage,
+      post-Micron-Crucial SSD exit). The <strong>RAM alone</strong> currently retails for $939 and has <strong>passed 48/48 MemTest86 tests
+      across 4 full passes (4h 8m, zero errors)</strong>. The <strong>870 EVO 2TB</strong>
+      currently retails for $275–$674 on Amazon — allocation-constrained supply with Micron/Crucial's consumer SSD exit (Feb 2026) and the 870 QVO line discontinuation.
+      The <strong>13900K</strong> has 2+ years of factory warranty remaining.
+    </p>
+    <p>
+      <strong>Drop-in ready:</strong> buy the tower, install your GPU, boot it up — done. Windows 11 preinstalled (fresh on request),
+      BIOS at latest stable, every driver current. Or buy it, keep the core, flip the extras — drop one 980 PRO and the 870 EVO
+      on eBay and you're looking at <strong>~$500–$800 recouped</strong> on parts you may not need. Every component has an active
+      Amazon/eBay/Marketplace market. The dossier below links to live retail pricing so you can verify any line.
+    </p>
+  </div>
+
+  <!-- GPU COMPATIBILITY -->
+  <div class="gpu-callout">
+    <div class="gpu-callout-label">⚡ GPU Drop-In Ready — Any Modern Card</div>
+    <h3>1300W 80+ Platinum · ATX 3.1 · PCIe 5.1 · Native 12V-2×6</h3>
+    <p>
+      This chassis and PSU are validated for every current-gen flagship. If you already own one,
+      it's plug-and-play. If you don't, the <strong>MSI MEG Ai1300P 1300W</strong> gives you room to buy up without
+      replacing power. EZDIY-FAB anti-sag bracket pre-installed for any 3-slot card. i9-13900K (24-core, 5.8 GHz
+      boost) won't bottleneck modern GPUs at 1440p or 4K.
+    </p>
+    <div class="gpu-tags">
+      <span class="gpu-tag">RTX 5090</span>
+      <span class="gpu-tag">RTX 5080</span>
+      <span class="gpu-tag">RTX 5070 Ti</span>
+      <span class="gpu-tag">RTX 4090</span>
+      <span class="gpu-tag">RTX 4080 Super</span>
+      <span class="gpu-tag">RTX 4080</span>
+      <span class="gpu-tag">RTX 4070 Ti Super</span>
+      <span class="gpu-tag">RTX 4070 Ti</span>
+      <span class="gpu-tag">RTX 3090 Ti</span>
+      <span class="gpu-tag">RTX 3090</span>
+      <span class="gpu-tag">RTX 3080 Ti</span>
+      <span class="gpu-tag">RTX 3080</span>
+      <span class="gpu-tag amd">RX 7900 XTX</span>
+      <span class="gpu-tag amd">RX 7900 XT</span>
+      <span class="gpu-tag amd">RX 9070 XT</span>
+      <span class="gpu-tag amd">RX 9070</span>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="highlights">
+    <div class="hl-item">
+      <div class="hl-icon">🛡️</div>
+      <div class="hl-text">CPU Warranty to 2028</div>
+      <div class="hl-sub">Intel extended 13900K +2yr</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">⚡</div>
+      <div class="hl-text">PSU Warranty to 2033</div>
+      <div class="hl-sub">MSI 10-year, CWT OEM</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">🧠</div>
+      <div class="hl-text">Hynix M-die DDR5</div>
+      <div class="hl-sub">6400 CL32 · $939 retail</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">💎</div>
+      <div class="hl-text">870 EVO · Discontinued</div>
+      <div class="hl-sub">Samsung EOL'd SATA · Jan 2026</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">📦</div>
+      <div class="hl-text">Cable-Managed · Tested</div>
+      <div class="hl-sub">Single owner · full receipts</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">🎯</div>
+      <div class="hl-text">7TB Storage · 4 Drives</div>
+      <div class="hl-sub">Dual 980 PRO NVMe + SATA + HDD</div>
+    </div>
+  </div>
+
+  <!-- COMPONENT CARDS -->
+  <div class="section-label">Component-by-component · Click to expand</div>
+
+  <!-- 1. CPU -->
+  <div class="comp" data-id="1">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A+</div>
+      <div class="comp-mid">
+        <div class="comp-title">Intel Core i9-13900K <span class="tag-dot green">Warranty to 2028</span></div>
+        <div class="comp-subtitle">24-core (8P+16E) · 32-thread · 5.8 GHz boost · LGA 1700</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$399</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current new retail</div><div class="m-val">$399 (Amazon/Newegg, Apr 2026)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market (eBay)</div><div class="m-val">$270–$320 typical</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Original purchase</div><div class="m-val">June 29, 2023 · Amazon</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Warranty expires</div><div class="m-val"><strong style="color:#16a34a">June 29, 2028</strong> (Intel extended +2yr)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Microcode</div><div class="m-val">0x12B final mitigation applied (Sept 2024)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Stability testing</div><div class="m-val">Prime95 + Cinebench R23 clean · no crash history</div></div>
+        <div class="m-row"><div class="m-icon info">●</div><div class="m-label">vs. i9-14900K</div><div class="m-val">13900K has better long-term reliability rep — 14900K caught more of the 2024 Raptor Lake instability issue</div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Why this matters</div>
+        <p>Intel extended all boxed Raptor Lake CPU warranties by +2 years in response to the 2024 stability scandal. Your effective warranty runs through <strong>June 2028</strong>. Original receipt transfers the coverage. The 0x12B microcode is the final, permanent fix — Intel officially closed the issue in late 2024.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MOBO -->
+  <div class="comp" data-id="2">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">MSI MPG Z790 EDGE WIFI DDR5</div>
+        <div class="comp-subtitle">16+1+1 phase VRM · PCIe 5.0 x16 · 4× M.2 · Wi-Fi 6E · 2.5G LAN</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$249–290</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current new retail</div><div class="m-val">$249–$290 (Amazon · Newegg · Best Buy)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market (eBay)</div><div class="m-val">$140–$175 complete/tested</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">VRM</div><div class="m-val">16+1+1 phase, 90A Smart Power Stages · dual 8-pin EPS</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Memory support</div><div class="m-val">DDR5 up to 7800+ MT/s · 4 DIMM slots · XMP 3.0</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">M.2 slots</div><div class="m-val">4× NVMe (1× PCIe 5.0 + 3× PCIe 4.0)</div></div>
+        <div class="m-row"><div class="m-icon info">●</div><div class="m-label">Warranty</div><div class="m-val">3-year MSI limited · expires ~June 2026</div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Why this matters</div>
+        <p>Dual 8-pin EPS + 90A SPS VRM genuinely supports sustained 250–300W CPU loads. This board is overbuilt for the 13900K and handles a future 14900K/KS without breaking a sweat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RAM -->
+  <div class="comp" data-id="3">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A+</div>
+      <div class="comp-mid">
+        <div class="comp-title">G.Skill Trident Z5 RGB 64GB DDR5-6400 CL32 <span class="tag-dot green">Hynix M-die</span></div>
+        <div class="comp-subtitle">F5-6400J3239G32GX2-TZ5RK · 2×32GB · 1.40V · CL32-39-39-102</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$939</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current new retail</div><div class="m-val"><strong style="color:#16a34a">$939 on Amazon (Apr 2026)</strong></div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Original paid</div><div class="m-val">$229.99 (June 29, 2023 · Amazon)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Binning</div><div class="m-val"><strong>SK Hynix M-die 24Gbit</strong> (enthusiast-tier)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$700–$820 on r/hardwareswap / eBay</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Warranty</div><div class="m-val"><strong style="color:#16a34a">G.Skill Limited Lifetime Warranty</strong> — covers defects in materials and workmanship under normal operating conditions. Original receipt included.</div></div>
+        <div class="m-row"><div class="m-icon info">●</div><div class="m-label">Why the price</div><div class="m-val">DDR5 spot prices up ~307% since Sept 2025 — Samsung/Hynix/Micron shifted fab capacity to HBM3e for AI accelerators</div></div>
+      </div>
+
+      <!-- MEMTEST86 VALIDATION BLOCK -->
+      <div class="insight" style="background:#f0f7f2; border-color:#c6e4ce; margin-top:16px;">
+        <div class="insight-label" style="color:#16a34a;">✓ MemTest86 v11.6 Validation — Recent Stability Test</div>
+        <div class="metrics" style="border-top:none; padding-top:4px;">
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Overall result</div><div class="m-val"><strong style="color:#16a34a">PASS · 48/48 tests (100%)</strong></div></div>
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Test duration</div><div class="m-val">4 hours 8 minutes · <strong>4 full passes</strong></div></div>
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Bits in error</div><div class="m-val">Total: 0 · Min: 0 · Max: 0 · Avg: 0 — <strong>zero errors</strong></div></div>
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Event log</div><div class="m-val">0 memory errors logged in 30 days</div></div>
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Test speed</div><div class="m-val">6384 MT/s running at rated XMP, CL32-39-39-102</div></div>
+          <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Voltage</div><div class="m-val">1.40V — within spec, dual-channel optimal</div></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-label">Why this matters</div>
+        <p>This is one of the single most valuable components in the build. 2×32GB at 6400 CL32 lands on <strong>SK Hynix M-die</strong> — the well-binned enthusiast tier. Replacement cost today: $939. DDR5 shortage is projected to persist through 2028 per TrendForce and Micron. <strong>MemTest86 full validation means the buyer gets a memory kit that is proven stable, not assumed stable.</strong> Single adult owner, smoke-free/child-free home, never overclocked.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 980 PRO -->
+  <div class="comp" data-id="4">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">Samsung 980 PRO 2TB NVMe (Boot)</div>
+        <div class="comp-subtitle">PCIe 4.0 x4 · 7,000 MB/s seq · 1M IOPS · V-NAND + DRAM cache</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$280–450</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current new retail</div><div class="m-val">$280–$450 (volatile, NAND shortage)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$180–$260 eBay sold</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Role</div><div class="m-val">Boot drive · Windows 11 preinstalled (fresh on request)</div></div>
+        <div class="m-row"><div class="m-icon warn">●</div><div class="m-label">Warranty</div><div class="m-val">5yr / 1200 TBW · <strong>non-transferable</strong> per Samsung policy</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Health</div><div class="m-val">SMART clean · well under rated TBW</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SECOND 980 PRO -->
+  <div class="comp" data-id="5">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">Samsung 980 PRO 2TB NVMe (Games / Scratch) <span class="tag-dot green">Dual 980 PRO Config</span></div>
+        <div class="comp-subtitle">PCIe 4.0 x4 · 7,000 MB/s seq · 1M IOPS · V-NAND + DRAM cache</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$280–450</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current new retail</div><div class="m-val">$280–$450 (volatile, NAND shortage)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$180–$260 eBay sold</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Role</div><div class="m-val">Games library / scratch volume · fills 2nd M.2 slot · matches boot drive</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Warranty</div><div class="m-val">5yr / 1200 TBW · <strong>non-transferable</strong> per Samsung policy (receipt included)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Health</div><div class="m-val">SMART clean · well under rated TBW</div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Why this matters</div>
+        <p>Two matched Samsung 980 PRO 2TB drives = <strong>4TB of tier-1 NVMe storage</strong> in the fastest consumer PCIe 4.0 config that exists. No tier mixing, no DRAM-less compromise — both drives are flagship-class with on-board DRAM cache. Total internal storage climbs to <strong>7TB</strong> with the 870 EVO and Seagate HDD.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 870 EVO -->
+  <div class="comp" data-id="6">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A+</div>
+      <div class="comp-mid">
+        <div class="comp-title">Samsung 870 EVO 2TB SATA SSD <span class="tag-dot gold">Discontinued</span></div>
+        <div class="comp-subtitle">MZ-77E2T0B/AM · Samsung MJX controller · 1200 TBW · 5yr warranty</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$275–674</div>
+        <div class="comp-floor-price">Current retail (volatile)</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current retail</div><div class="m-val"><strong style="color:#16a34a">$275–$674 on Amazon (Apr 2026)</strong></div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Original MSRP</div><div class="m-val">$219–$229 (2022–2023 floor)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$130–$200 (rising fast)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Product status</div><div class="m-val">Samsung 870 QVO discontinued · 870 EVO SKUs in allocation-constrained supply</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Category status</div><div class="m-val"><strong>Micron Crucial exited all consumer SSDs Feb 2026</strong> — SATA SSDs now a legacy/hoard category</div></div>
+        <div class="m-row"><div class="m-icon warn">●</div><div class="m-label">Warranty</div><div class="m-val">5yr / 1200 TBW · <strong>non-transferable</strong></div></div>
+      </div>
+      <div class="insight gold">
+        <div class="insight-label">Why this matters</div>
+        <p>The 870 EVO was the gold-standard consumer SATA SSD. Samsung has now exited the SATA category entirely — no replacement product coming. Micron/Crucial followed a month later. Your 2TB drive went from a $220 commodity to a <strong>$275–$674 allocation-constrained premium product</strong> in under 4 months. One of the most inflation-sensitive components in the entire build.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Seagate HDD -->
+  <div class="comp" data-id="7">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score very-good">B</div>
+      <div class="comp-mid">
+        <div class="comp-title">Seagate Barracuda 1TB HDD</div>
+        <div class="comp-subtitle">ST1000DM010 · 7200 RPM · 64MB cache · SATA 6Gb/s</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$45–60</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current retail</div><div class="m-val">$45–$60 new · HDDs NAND-immune (stable pricing)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$15–$25 with decent SMART hours</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Role</div><div class="m-val">Bulk / scratch storage</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Case -->
+  <div class="comp" data-id="8">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">NZXT H710i Mid-Tower <span class="tag-dot gold">Discontinued</span></div>
+        <div class="comp-subtitle">Steel + tempered glass · Smart Device V2 RGB+fan hub · 280/360 top radiator support</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$200 MSRP</div>
+        <div class="comp-floor-price">Used: $90–140</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Original MSRP</div><div class="m-val">$200 (discontinued · successor H7 Flow now $130-150)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$90–$140 Charlotte local</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Smart Device V2</div><div class="m-val">2 RGB channels (5 Aer RGB 2 fans each) + 3 fan channels — $40-60 standalone replacement value</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Features</div><div class="m-val">Integrated cable-management bar · vertical GPU mount · EATX support</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. AIO -->
+  <div class="comp" data-id="9">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">NZXT Kraken Z63 280mm AIO <span class="tag-dot green">Asetek G7</span></div>
+        <div class="comp-subtitle">2.36" color LCD · Asetek Gen 7 pump · 2× Aer P 140mm fans</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$250+</div>
+        <div class="comp-floor-price">Current retail (scarce)</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current retail</div><div class="m-val">$250+ (EOL at first-party retail, Amazon third-party $280+)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$90–$140</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Pump platform</div><div class="m-val"><strong>Asetek Gen 7</strong> (licensed, post-controversy · clean IP)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">LCD</div><div class="m-val">2.36" color · 24-bit · 60 fps · custom GIFs/images/telemetry</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Radiator</div><div class="m-val">280mm · fits H710i top mount</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. PSU -->
+  <div class="comp" data-id="10">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A+</div>
+      <div class="comp-mid">
+        <div class="comp-title">MSI MEG Ai1300P 1300W Platinum <span class="tag-dot green">ATX 3.1 · Warranty to 2033</span></div>
+        <div class="comp-subtitle">PCIe 5.1 · Native 12V-2×6 · CWT OEM · 100% Japanese caps · 80+ Platinum / Cybenetics Platinum</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$350–400</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Current retail</div><div class="m-val">$350–$400 (volatile · Amazon $489 at times)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Used market</div><div class="m-val">$180–$240</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">OEM</div><div class="m-val">Channel Well Technology (CWT) — tier-1 platform (also builds for Corsair AXi)</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">GPU readiness</div><div class="m-val">Native 12V-2×6 cable included · 600W transient spike capable · RTX 4090/5090 ready</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Certifications</div><div class="m-val">80+ Platinum · Cybenetics Platinum efficiency · ATX 3.1 / PCIe 5.1</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Warranty</div><div class="m-val"><strong style="color:#16a34a">10-year limited · runs through June 2033</strong> (honored with receipt)</div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Why this matters</div>
+        <p>This is a current-gen, tier-1 enthusiast PSU with 7+ years of warranty coverage remaining. It's ready for any RTX 4090/5090 you drop in today, and whatever ships in the next GPU cycle. The MSI MEG line uses the same CWT platform as Corsair's flagship AXi series.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. BRACKET -->
+  <div class="comp" data-id="11">
+    <div class="comp-head" onclick="toggle(this)">
+      <div class="comp-score excellent">A</div>
+      <div class="comp-mid">
+        <div class="comp-title">EZDIY-FAB GPU Support Bracket <span class="tag-dot green">Pre-Installed</span></div>
+        <div class="comp-subtitle">Aluminum anti-sag · adjustable height · ready for 3-slot 4090/5090-class cards</div>
+      </div>
+      <div class="comp-pricing">
+        <div class="comp-ask-price">$12–20</div>
+        <div class="comp-floor-price">Current retail</div>
+      </div>
+      <div class="comp-arrow">▼</div>
+    </div>
+    <div class="comp-body">
+      <div class="metrics">
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Why it matters</div><div class="m-val">RTX 4090/5090 triple-slot AIB cards weigh 2.5–3.0 kg — bracket prevents PCIe slot / motherboard flex and cracked PCBs</div></div>
+        <div class="m-row"><div class="m-icon pass">●</div><div class="m-label">Status</div><div class="m-val">Already installed and adjusted · $0 effort for buyer</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETAIL REPLACEMENT TABLE -->
+  <div class="data-table">
+    <h3>Retail replacement cost today (April 2026)</h3>
+    <div class="dt-row header">
+      <div>Component</div>
+      <div class="dt-val">Low end</div>
+      <div class="dt-val">High end</div>
+    </div>
+    <div class="dt-row"><div class="dt-name">Intel i9-13900K</div><div class="dt-val">$399</div><div class="dt-val">$459</div></div>
+    <div class="dt-row"><div class="dt-name">MSI MPG Z790 EDGE WIFI DDR5</div><div class="dt-val">$249</div><div class="dt-val">$290</div></div>
+    <div class="dt-row"><div class="dt-name">G.Skill 64GB DDR5-6400 CL32</div><div class="dt-val">$939</div><div class="dt-val">$980</div></div>
+    <div class="dt-row"><div class="dt-name">Samsung 980 PRO 2TB NVMe (Boot)</div><div class="dt-val">$280</div><div class="dt-val">$450</div></div>
+    <div class="dt-row"><div class="dt-name">Samsung 980 PRO 2TB NVMe (Games)</div><div class="dt-val">$280</div><div class="dt-val">$450</div></div>
+    <div class="dt-row"><div class="dt-name">Samsung 870 EVO 2TB SATA</div><div class="dt-val">$275</div><div class="dt-val">$674</div></div>
+    <div class="dt-row"><div class="dt-na
