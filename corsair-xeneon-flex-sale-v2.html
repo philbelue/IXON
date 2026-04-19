@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corsair Xeneon Flex 45 OLED — Local Sale Dossier</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #f1f1ef; min-height: 100vh; color: #1a1a1a; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 32px 64px; }
+
+  .masthead { padding: 32px 0 36px; border-bottom: 1px solid #e0e0e0; margin-bottom: 36px; }
+  .masthead-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .masthead h1 { font-size: 34px; font-weight: 800; color: #111; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
+  .masthead h1 .accent { color: #16a34a; }
+  .masthead-specs { font-size: 14px; color: #666; font-weight: 400; letter-spacing: 0.3px; margin-bottom: 20px; }
+  .masthead-statement { font-size: 14px; line-height: 1.7; color: #444; max-width: 680px; }
+  .masthead-meta { display: flex; gap: 28px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; }
+  .meta-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 4px; }
+  .meta-value { font-size: 15px; font-weight: 700; color: #111; }
+  .meta-value.green { color: #16a34a; }
+
+  .deal-banner { background: linear-gradient(135deg, #0f0f0f 0%, #2a2a2a 100%); border-radius: 14px; padding: 32px 36px; margin-bottom: 32px; color: #fff; }
+  .deal-banner-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #777; margin-bottom: 10px; }
+  .deal-price { font-size: 52px; font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1; }
+  .deal-price .firm { font-size: 18px; color: #16a34a; font-weight: 700; margin-left: 10px; letter-spacing: 0; }
+  .deal-price-sub { font-size: 13px; color: #999; margin-top: 8px; }
+  .deal-stats { display: flex; gap: 1px; background: #333; border-radius: 8px; overflow: hidden; margin-top: 22px; }
+  .deal-stat { flex: 1; text-align: center; padding: 14px 12px; background: #1a1a1a; }
+  .deal-stat-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #777; margin-bottom: 3px; }
+  .deal-stat-val { font-size: 18px; font-weight: 800; color: #fff; }
+  .deal-stat-sub { font-size: 10px; color: #666; margin-top: 2px; }
+
+  .local-callout { background: #fff3cd; border: 1.5px solid #ffd54a; border-radius: 10px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: flex-start; gap: 16px; }
+  .local-icon { font-size: 24px; flex-shrink: 0; }
+  .local-body h4 { font-size: 14px; font-weight: 800; color: #7a5d00; margin-bottom: 6px; }
+  .local-body p { font-size: 12.5px; color: #5a4600; line-height: 1.65; margin-bottom: 0; }
+
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; margin-top: 8px; }
+
+  .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e5e5e5; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; margin-bottom: 36px; }
+  .hl-item { background: #fff; padding: 18px 20px; text-align: center; }
+  .hl-icon { font-size: 18px; margin-bottom: 6px; }
+  .hl-text { font-size: 11px; font-weight: 700; color: #111; line-height: 1.4; }
+  .hl-sub { font-size: 10px; color: #777; margin-top: 3px; font-weight: 500; }
+
+  .specs-table { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; }
+  .specs-table h3 { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 16px; }
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 28px; font-size: 12px; align-items: baseline; }
+  .specs-label { color: #888; font-weight: 500; padding: 7px 0; border-bottom: 1px solid #f5f5f5; }
+  .specs-val { color: #222; font-weight: 600; padding: 7px 0; border-bottom: 1px solid #f5f5f5; text-align: right; }
+
+  .included { padding: 28px 32px; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; margin-bottom: 28px; }
+  .included h3 { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 16px; }
+  .included-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 32px; }
+  .inc-item { font-size: 12.5px; color: #333; padding: 5px 0; display: flex; align-items: center; gap: 10px; }
+  .inc-check { color: #16a34a; font-size: 13px; font-weight: 800; }
+
+  .pricing-logic { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; }
+  .pricing-logic h3 { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 16px; }
+  .pl-row { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 10px 0; border-bottom: 1px solid #f5f5f5; align-items: baseline; }
+  .pl-row:last-child { border-bottom: none; }
+  .pl-label { font-size: 12.5px; color: #333; font-weight: 500; }
+  .pl-label small { display: block; color: #999; font-size: 11px; font-weight: 400; margin-top: 3px; line-height: 1.5; }
+  .pl-val { font-size: 14px; color: #111; font-weight: 700; text-align: right; white-space: nowrap; }
+  .pl-val.negative { color: #c0392b; }
+  .pl-row.total { border-top: 2px solid #111; margin-top: 8px; padding-top: 14px; }
+  .pl-row.total .pl-label { font-weight: 700; font-size: 13px; }
+  .pl-row.total .pl-val { font-size: 18px; font-weight: 800; color: #16a34a; }
+
+  .payment { background: #0f0f0f; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; color: #fff; }
+  .payment-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .payment h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 14px; }
+  .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; margin-bottom: 16px; }
+  .payment-item { font-size: 12px; color: #ccc; line-height: 1.6; }
+  .payment-item strong { color: #16a34a; display: block; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+  .payment-note { font-size: 11px; color: #888; border-top: 1px solid #2a2a2a; padding-top: 14px; margin-top: 4px; line-height: 1.6; }
+
+  .shipping-math { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; }
+  .shipping-math h3 { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 8px; }
+  .shipping-math .ship-intro { font-size: 12.5px; color: #666; line-height: 1.65; margin-bottom: 16px; }
+  .ship-row { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 12.5px; }
+  .ship-row:last-child { border-bottom: none; padding-top: 14px; margin-top: 8px; border-top: 2px solid #111; font-weight: 700; font-size: 14px; }
+  .ship-row .red { color: #c0392b; }
+  .ship-row .green { color: #16a34a; font-weight: 700; }
+
+  .page-footer { text-align: center; padding: 28px 0 8px; }
+  .footer-line { font-size: 10px; color: #bbb; letter-spacing: 0.5px; }
+  .footer-invite { font-size: 12px; color: #555; margin-top: 12px; line-height: 1.65; padding: 16px 24px; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; display: inline-block; max-width: 560px; }
+
+  @media (max-width: 700px) {
+    .page { padding: 24px 16px 48px; }
+    .masthead h1 { font-size: 26px; }
+    .deal-price { font-size: 40px; }
+    .highlights { grid-template-columns: repeat(2, 1fr); }
+    .specs-grid, .included-grid { grid-template-columns: 1fr; }
+    .payment-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-label">Private Sale Dossier · Charlotte, NC · April 2026</div>
+    <h1>Corsair Xeneon Flex 45 OLED. <span class="accent">Bend it. Local only.</span></h1>
+    <div class="masthead-specs">45" bendable OLED · 3440 × 1440 · 240Hz · 0.03ms · G-SYNC / FreeSync Premium</div>
+    <p class="masthead-statement">
+      Single-owner sale. Still under Corsair 3-year burn-in warranty. <strong>Only sold direct from Corsair.com today at $1,999.99</strong> — no broad retail distribution remaining. Original Corsair factory stand <em>and</em> the optional <strong>Corsair Xeneon Flex Desk Clamp Adaptor (CM-8900013)</strong> both included. No shipping — this is a 50 lb, 45" OLED panel. Local Charlotte pickup only.
+    </p>
+    <div class="masthead-meta">
+      <div><div class="meta-label">Ask</div><div class="meta-value green">$1,100 firm</div></div>
+      <div><div class="meta-label">Expected Close</div><div class="meta-value">$1,000</div></div>
+      <div><div class="meta-label">Bundle w/ Tower</div><div class="meta-value">$3,150 (save $250)</div></div>
+      <div><div class="meta-label">Current Retail</div><div class="meta-value">$1,999.99</div></div>
+    </div>
+  </div>
+
+  <!-- DEAL BANNER -->
+  <div class="deal-banner">
+    <div class="deal-banner-label">Local Pickup Only · Cash/Zelle · SafeTrade Meet</div>
+    <div class="deal-price">$1,100 <span class="firm">FIRM</span></div>
+    <div class="deal-price-sub">No shipping · No holds · First cash at meet takes it</div>
+    <div class="deal-stats">
+      <div class="deal-stat">
+        <div class="deal-stat-label">List Ask</div>
+        <div class="deal-stat-val">$1,100</div>
+        <div class="deal-stat-sub">Firm</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Expected Close</div>
+        <div class="deal-stat-val">$1,000</div>
+        <div class="deal-stat-sub">3–7 days</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Current Retail</div>
+        <div class="deal-stat-val">$1,999.99</div>
+        <div class="deal-stat-sub">Corsair.com</div>
+      </div>
+      <div class="deal-stat">
+        <div class="deal-stat-label">Launch MSRP</div>
+        <div class="deal-stat-val">$1,999</div>
+        <div class="deal-stat-sub">Original retail</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCAL-ONLY CALLOUT -->
+  <div class="local-callout">
+    <div class="local-icon">🚫</div>
+    <div class="local-body">
+      <h4>Local Charlotte pickup ONLY — no shipping, no exceptions</h4>
+      <p>
+        45" OLED, ~50 lb packed. Shipping this is a $220+ insured Ground bet against panel damage. eBay and reseller
+        fees would gut the sale to ~$500 net. If you're not in Charlotte or driving distance, please don't DM —
+        I won't change my mind on this.
+      </p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="highlights">
+    <div class="hl-item">
+      <div class="hl-icon">📺</div>
+      <div class="hl-text">45" OLED · 3440×1440</div>
+      <div class="hl-sub">Bendable flat ↔ 800R</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">⚡</div>
+      <div class="hl-text">240Hz · 0.03ms</div>
+      <div class="hl-sub">True OLED response</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">🛡️</div>
+      <div class="hl-text">Under Warranty</div>
+      <div class="hl-sub">Corsair 3-year burn-in</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">🖥️</div>
+      <div class="hl-text">Desk Clamp Adaptor</div>
+      <div class="hl-sub">Corsair CM-8900013 ($39.99)</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">📦</div>
+      <div class="hl-text">Original Stand</div>
+      <div class="hl-sub">Factory base included</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-icon">✅</div>
+      <div class="hl-text">G-SYNC + FreeSync</div>
+      <div class="hl-sub">Both compatible</div>
+    </div>
+  </div>
+
+  <!-- SPECS -->
+  <div class="specs-table">
+    <h3>Panel Specifications</h3>
+    <div class="specs-grid">
+      <div class="specs-label">Model</div><div class="specs-val">Corsair Xeneon Flex 45WQHD240</div>
+      <div class="specs-label">SKU</div><div class="specs-val">CM-9030001-NA</div>
+      <div class="specs-label">Panel</div><div class="specs-val">45" bendable OLED (LG W-OLED)</div>
+      <div class="specs-label">Resolution</div><div class="specs-val">3440 × 1440 (UWQHD)</div>
+      <div class="specs-label">Refresh Rate</div><div class="specs-val">240 Hz</div>
+      <div class="specs-label">Response Time</div><div class="specs-val">0.03 ms GtG</div>
+      <div class="specs-label">Curvature</div><div class="specs-val">Flat ↔ 800R bendable</div>
+      <div class="specs-label">HDR</div><div class="specs-val">HDR10, DisplayHDR True Black 400</div>
+      <div class="specs-label">Brightness (peak)</div><div class="specs-val">1000 nits</div>
+      <div class="specs-label">Color Gamut</div><div class="specs-val">98.5% DCI-P3</div>
+      <div class="specs-label">Sync</div><div class="specs-val">NVIDIA G-SYNC Compatible + AMD FreeSync Premium</div>
+      <div class="specs-label">Inputs</div><div class="specs-val">DisplayPort 1.4 · 2× HDMI 2.1 · USB-C (w/ 65W PD)</div>
+      <div class="specs-label">USB Hub</div><div class="specs-val">USB 3.2 Gen 2 4-port hub</div>
+      <div class="specs-label">VESA</div><div class="specs-val">100 × 100 mm</div>
+      <div class="specs-label">Weight (panel)</div><div class="specs-val">~29 lb / 13 kg</div>
+    </div>
+  </div>
+
+  <!-- INCLUDED -->
+  <div class="included">
+    <h3>What's included</h3>
+    <div class="included-grid">
+      <div class="inc-item"><span class="inc-check">✓</span> Xeneon Flex 45 OLED panel (CM-9030001-NA)</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Original Corsair factory stand</div>
+      <div class="inc-item"><span class="inc-check">✓</span> <strong>Corsair Xeneon Flex Desk Clamp Adaptor (CM-8900013)</strong> — sold separately at Corsair.com for $39.99</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Original power brick + cable</div>
+      <div class="inc-item"><span class="inc-check">✓</span> DisplayPort 1.4 cable</div>
+      <div class="inc-item"><span class="inc-check">✓</span> HDMI 2.1 cable</div>
+      <div class="inc-item"><span class="inc-check">✓</span> USB-C cable</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Original box and foam inserts</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Corsair iCUE warranty paperwork</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Original purchase receipt</div>
+    </div>
+  </div>
+
+  <!-- PRICING LOGIC -->
+  <div class="pricing-logic">
+    <h3>How $1,100 was built</h3>
+    <div class="pl-row"><div class="pl-label">Launch MSRP (2022)<small>Corsair.com at release</small></div><div class="pl-val">$1,999</div></div>
+    <div class="pl-row"><div class="pl-label">Current retail (April 2026)<small>Still $1,999.99 direct from Corsair.com — Corsair-exclusive channel</small></div><div class="pl-val">$1,999.99</div></div>
+    <div class="pl-row"><div class="pl-label">Used depreciation (single-owner, in-warranty)<small>45% discount off full retail — favorable vs. typical 50-60% for out-of-warranty</small></div><div class="pl-val negative">-$900</div></div>
+    <div class="pl-row"><div class="pl-label">Corsair Desk Clamp Adaptor (CM-8900013)<small>Separate $39.99 purchase, included</small></div><div class="pl-val">(incl.)</div></div>
+    <div class="pl-row"><div class="pl-label">Original factory stand<small>$199 VESA arm / stand retail value</small></div><div class="pl-val">(incl.)</div></div>
+    <div class="pl-row"><div class="pl-label">Original box + foam + all cables<small>Ready-to-ship kit completeness</small></div><div class="pl-val">(incl.)</div></div>
+    <div class="pl-row total"><div class="pl-label">Listed Ask · 45% off current retail</div><div class="pl-val">$1,100</div></div>
+  </div>
+
+  <!-- WHY NO SHIPPING -->
+  <div class="shipping-math">
+    <h3>Why local only — the math</h3>
+    <div class="ship-intro">
+      If you're curious why I'm not open to shipping — here's the full cost breakdown. Local is the only scenario where both sides win.
+    </div>
+    <div class="ship-row"><div>Sold price (eBay)</div><div>$1,100</div></div>
+    <div class="ship-row"><div>eBay final value fee (13.25% + $0.30)</div><div class="red">-$146</div></div>
+    <div class="ship-row"><div>UPS Ground insured shipping (50 lb box, ~$2,000 declared)</div><div class="red">-$220</div></div>
+    <div class="ship-row"><div>Packing materials + double-box</div><div class="red">-$30</div></div>
+    <div class="ship-row"><div>Net to seller (shipped)</div><div class="red">$704</div></div>
+    <div class="ship-row"><div>Net to seller (local)</div><div class="green">$1,100</div></div>
+    <div class="ship-row"><div>Delta · why local wins</div><div class="green">+$396</div></div>
+  </div>
+
+  <!-- PAYMENT -->
+  <div class="payment">
+    <div class="payment-label">Payment & Meetup · Non-negotiable</div>
+    <h3>Cash or Zelle · Charlotte-Mecklenburg SafeTrade meet only</h3>
+    <div class="payment-grid">
+      <div class="payment-item">
+        <strong>Accepted</strong>
+        Cash or Zelle (verified in person). No PayPal G&S. No Venmo. No Cash App. No checks. No wires.
+      </div>
+      <div class="payment-item">
+        <strong>Meet Location</strong>
+        QuikTrip Safe Exchange Zone (CMPD-monitored painted red zone) — 14+ Charlotte locations, 24/7 video, periodic CMPD drive-through. CMPD station lobby as fallback.
+      </div>
+      <div class="payment-item">
+        <strong>No Shipping</strong>
+        Local pickup only. Bring your own vehicle — panel box is 45" × 28" × 11", ~50 lb total.
+      </div>
+      <div class="payment-item">
+        <strong>Trades</strong>
+        No trades. No "plus my old monitor." No crypto. No gift cards. Cash sale.
+      </div>
+    </div>
+    <div class="payment-note">
+      Monitor is set up and testable at meet. Bring a laptop if you want to verify DP/HDMI output + bend function before handing over payment.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-line">Dossier compiled Apr 18, 2026 · Philip Belue · Charlotte, NC</div>
+    <div class="footer-invite">
+      <strong>Serious buyers only.</strong> Verify any claim in person at meet. First cash at SafeTrade closes.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
