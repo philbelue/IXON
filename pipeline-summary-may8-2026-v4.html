@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline Summary — Phil Belue | May 8, 2026</title>
+<style>
+  :root {
+    --ixon-blue: #1059D2;
+    --ixon-dark: #021752;
+    --ixon-offwhite: #F3F4FA;
+    --ixon-yellow: #FACD00;
+    --ixon-grey: #626262;
+    --ixon-light-grey: #E8E9F0;
+    --green: #1B9E5A;
+    --orange: #E8850C;
+    --red: #D93025;
+    --purple: #6B46C1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: var(--ixon-dark);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1160px; margin: 0 auto; padding: 38px 32px 60px; }
+  .header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ixon-dark); padding-bottom:16px; margin-bottom:28px; gap:20px; }
+  h1,h2,h3,h4 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .header-left h1 { font-weight: 750; font-size: 27px; color: var(--ixon-dark); letter-spacing: -0.4px; }
+  .subtitle { font-size:14px; color:var(--ixon-grey); margin-top:3px; }
+  .header-right { text-align:right; font-size:13px; color:var(--ixon-grey); }
+  .date { font-weight:750; color:var(--ixon-dark); font-size:15px; }
+  .kpi-row { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-bottom:28px; }
+  .kpi-card { background:var(--ixon-offwhite); border-radius:10px; padding:20px 18px; text-align:center; border-top:4px solid var(--ixon-blue); min-height:116px; }
+  .kpi-card.green { border-top-color:var(--green); }
+  .kpi-card.accent { border-top-color:var(--ixon-yellow); }
+  .kpi-card.orange { border-top-color:var(--orange); }
+  .kpi-value { font-weight:800; font-size:32px; color:var(--ixon-dark); line-height:1.1; }
+  .kpi-label { font-size:11px; font-weight:700; color:var(--ixon-grey); text-transform:uppercase; letter-spacing:.55px; margin-top:8px; }
+  .kpi-sub { font-size:11px; color:var(--ixon-blue); margin-top:5px; font-weight:600; }
+  .exec { background: var(--ixon-dark); color:#fff; border-radius:12px; padding:20px 24px; margin-bottom:30px; border-top:5px solid var(--ixon-yellow); }
+  .exec h2 { color:#fff; font-size:17px; text-transform:uppercase; letter-spacing:.55px; margin-bottom:8px; }
+  .exec p { font-size:14px; color:rgba(255,255,255,.88); max-width:1020px; }
+  .section { margin-bottom:32px; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .section-header h2 { font-weight:750; font-size:16px; color:var(--ixon-dark); text-transform:uppercase; letter-spacing:.5px; }
+  .deal-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+  .deal-card { background:#fff; border:1px solid var(--ixon-light-grey); border-radius:9px; padding:17px 19px; position:relative; box-shadow:0 1px 3px rgba(2,23,82,.04); }
+  .deal-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:9px 0 0 9px; background:var(--ixon-blue); }
+  .deal-card.hot::before { background:var(--green); }
+  .deal-card.warm::before { background:var(--orange); }
+  .deal-card.strategic::before { background:var(--ixon-yellow); }
+  .deal-card.risk::before { background:var(--red); }
+  .deal-card.saas::before { background:var(--purple); }
+  .deal-name { font-weight:750; font-size:14px; color:var(--ixon-dark); margin-bottom:7px; }
+  .deal-meta { display:flex; gap:8px; margin-bottom:9px; flex-wrap:wrap; }
+  .badge { font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:.35px; }
+  .badge-wnc { background:var(--ixon-dark); color:#fff; }
+  .badge-stage { background:var(--ixon-offwhite); color:var(--ixon-grey); border:1px solid var(--ixon-light-grey); }
+  .badge-green { background:#E6F7EE; color:var(--green); }
+  .badge-orange { background:#FFF3E6; color:var(--orange); }
+  .badge-red { background:#FCE8E6; color:var(--red); }
+  .badge-saas { background:#EFE9FF; color:var(--purple); }
+  .deal-detail { font-size:13px; color:var(--ixon-grey); line-height:1.56; }
+  .deal-detail li { margin-left:16px; margin-bottom:3px; }
+  .mini { background:var(--ixon-offwhite); border-radius:8px; padding:14px 16px; border-left:4px solid var(--ixon-blue); font-size:13px; color:var(--ixon-grey); }
+  .mini strong { color:var(--ixon-dark); }
+  .table { width:100%; border-collapse:collapse; font-size:13px; background:#fff; }
+  .table th { text-align:left; font-weight:800; font-size:11px; text-transform:uppercase; letter-spacing:.45px; color:var(--ixon-grey); padding:8px 12px; border-bottom:2px solid var(--ixon-light-grey); }
+  .table td { padding:10px 12px; border-bottom:1px solid var(--ixon-light-grey); color:var(--ixon-dark); vertical-align:top; }
+  .amount { color:var(--green); font-weight:800; }
+  .risk-text { color:var(--red); font-weight:800; }
+  .footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--ixon-light-grey); display:flex; justify-content:space-between; font-size:11px; color:var(--ixon-grey); }
+  @media(max-width:820px){ .kpi-row{grid-template-columns:repeat(2,1fr)} .deal-grid{grid-template-columns:1fr} .header{align-items:flex-start;flex-direction:column}.header-right{text-align:left} }
+  @media print { .page{padding:22px 20px;} .deal-card{break-inside:avoid;} .section{break-inside:avoid;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>Pipeline Command Summary</h1>
+      <div class="subtitle">Phil Belue — Enterprise Account Executive, North America</div>
+    </div>
+    <div class="header-right">
+      <div class="date">May 8, 2026</div>
+      <div>IXON Cloud NA · Q2 Operating View</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card green"><div class="kpi-value">4.3</div><div class="kpi-label">Q2 WNC Closed</div><div class="kpi-sub">Current quarter actuals</div></div>
+    <div class="kpi-card orange"><div class="kpi-value">14.0</div><div class="kpi-label">Total WNC Pipeline</div><div class="kpi-sub">Revere, SS, CAM, Keller, Vigilant, Jewett</div></div>
+    <div class="kpi-card"><div class="kpi-value">2.0</div><div class="kpi-label">Near-Term WNC</div><div class="kpi-sub">Revere + SS Automation</div></div>
+    <div class="kpi-card accent"><div class="kpi-value">$27.9K+</div><div class="kpi-label">Visible SaaS Pipeline</div><div class="kpi-sub">Boomerang + UFP; Orenco/HEMSAW future</div></div>
+  </div>
+
+  <div class="exec">
+    <h2>Executive Snapshot</h2>
+    <p>Q2 is currently at <strong>4.3 WNC closed</strong>, with approximately <strong>14.0 WNC in active functional pipeline</strong> across Revere, SS Automation, Custom Automated Machines, Keller/KGS, Vigilant, and Jewett. The immediate path is to convert near-term hardware threshold deals while keeping strategic evals from drifting and preparing June SaaS/renewal conversations early. Revere and SS Automation represent the cleanest near-term WNC movement; Custom Automated Machines may already support a 3-point path if annual volume qualifies. Keller/KGS is now back in active motion as a strategic 3-point WNC opportunity with major Machine Insights/API/App Engine upside and a critical North American adoption gate. HEMSAW and Spartan need post-close adoption motion so hardware wins create expansion. SaaS pipeline is visible through Boomerang, UFP, Bradbury, MiTek, Keller/KGS, future HEMSAW, and Orenco scale-up potential, with Synlog flagged as a sensitive renewal risk. Orenco also needs leadership visibility because the billing issue has consumed significant time and must be corrected before a clean Q3/Q4 scale-up conversation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--green)"></div><h2>Confident to Close This Quarter</h2></div>
+    <div class="deal-grid">
+      <div class="deal-card hot">
+        <div class="deal-name">SS Automation & Controls</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0 WNC</span><span class="badge badge-stage">Evaluate</span><span class="badge badge-green">High Confidence</span></div>
+        <ul class="deal-detail"><li>Marcus indicated ~40–50 installs/year.</li><li>Need formal meeting and additional 4-router order path to make claimable.</li><li><strong>Next action:</strong> schedule meeting and drive order path.</li></ul>
+      </div>
+      <div class="deal-card hot">
+        <div class="deal-name">Revere Controls</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0 WNC</span><span class="badge badge-stage">Quote Out</span><span class="badge badge-green">2 Routers Away</span></div>
+        <ul class="deal-detail"><li>Currently at 3 routers; 2 additional routers quoted.</li><li>PO would bring them to 5 and make the 1.0 WNC claimable.</li><li>Potential upside if OEM division is included; need Patrick Y leadership intro.</li></ul>
+      </div>
+      <div class="deal-card hot">
+        <div class="deal-name">Custom Automated Machines</div>
+        <div class="deal-meta"><span class="badge badge-wnc">Potential 3.0 WNC</span><span class="badge badge-stage">Discovery</span><span class="badge badge-green">10 Routers</span></div>
+        <ul class="deal-detail"><li>Already at 10 routers; likely claimable if annual volume supports 75+ path.</li><li>Reached out to Pat Dillon thanking them for orders and asking to set meeting.</li><li><strong>Next action:</strong> qualify user management needs, annual volume, and standardization potential.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--green)"></div><h2>Closest to Pin — Near-Term WNC</h2></div>
+    <div class="deal-grid">
+      <div class="deal-card hot">
+        <div class="deal-name">Revere Control Systems</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0 WNC</span><span class="badge badge-stage">Evaluate / Quote Out</span><span class="badge badge-green">Waiting on PO</span></div>
+        <ul class="deal-detail"><li>Currently at 3 routers purchased.</li><li>2 additional routers quoted; PO would bring them to 5 and make WNC claimable.</li><li><strong>Next action:</strong> follow up on quote/PO status.</li></ul>
+      </div>
+      <div class="deal-card hot">
+        <div class="deal-name">SS Automation & Controls</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0 WNC</span><span class="badge badge-stage">Evaluate</span><span class="badge badge-orange">Meeting Needed</span></div>
+        <ul class="deal-detail"><li>Strong phone call with Marcus; they indicated ~40–50 installs/year.</li><li>Need formal meeting and additional 4-router order path to claim 1.0 WNC.</li><li><strong>Next action:</strong> schedule meeting with Marcus and align on standardization path.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--ixon-yellow)"></div><h2>Strategic Inflight — 3-Point / High-Upside Deals</h2></div>
+    <div class="deal-grid">
+      <div class="deal-card strategic">
+        <div class="deal-name">Keller / KGS</div>
+        <div class="deal-meta"><span class="badge badge-wnc">3.0 WNC Functional Pipeline</span><span class="badge badge-saas">Major Global SaaS</span><span class="badge badge-green">Back Active</span></div>
+        <ul class="deal-detail">
+          <li>Fleet potential is in the thousands; North America represents roughly 70% of the market, so 3.0 WNC is the functional cap — not the account ceiling.</li>
+          <li>Sergej confirmed Keller already understands IXON well: several Secure Edge Pros installed, Docker apps running, App Engine in use, custom dashboards built, and future API/data-lake plans under consideration.</li>
+          <li>Germany/KGS has already built significant IXON architecture around rig connectivity, Secure Edge Pro, Docker/KIM, App Engine, job-site views, QPM/quality documentation, maintenance checklists, production data, Influx/MongoDB, and future data lake/SAP/Dynamics integration.</li>
+          <li>Secure Edge Pro units are understood to be moving toward the US; the critical gate is now North American adoption of the German technical foundation.</li>
+          <li>Thomas reacted very positively to the Vecoplan US environment. That proof point should be used to show how separate regional/customer environments can support distributed assets, live/historical data, App Engine, visibility, and customer-facing value.</li>
+          <li>Immediate NA wedge: DPF/filter monitoring and downtime prevention on machines with dual diesel engines where improper regeneration shutdown can damage filters, reduce power, and impact production.</li>
+          <li>Portal/commercial structure may need Luke/Zach input: two portals vs. one global portal vs. hybrid model depending on ownership, regional data governance, procurement, and onboarding model.</li>
+          <li><strong>Commercial SaaS read:</strong> if Keller scales into Machine Insights Mature, Service Portal, App Engine, API, Edge App Management, and storage, annualized SaaS can become meaningful quickly. Based on the GBP SaaS list, Machine Insights Mature alone is £4,320/month (£51,840/year), before Service Portal, App Engine, API, storage, or Edge App Management.</li>
+          <li><strong>Next action:</strong> send Thomas/Sergej proposed next steps after strategy time today, confirm US SEP shipment count/location/timing, WNC recognition path, quantify DPF value case, engage Luke/Zach on portal/SaaS structure, and use Vecoplan US as proof point.</li>
+        </ul>
+      </div>
+      <div class="deal-card strategic">
+        <div class="deal-name">Custom Automated Machines</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0–3.0 WNC Potential</span><span class="badge badge-stage">Discovery</span><span class="badge badge-orange">Qualify Volume</span></div>
+        <ul class="deal-detail"><li>Fayetteville, TN systems integrator; no website found.</li><li>Appears to have 10 routers, but annual machine/router volume needs qualification.</li><li><strong>Next action:</strong> schedule intro call and determine annual installs, router usage, and standardization potential.</li></ul>
+      </div>
+      <div class="deal-card strategic">
+        <div class="deal-name">Vigilant Environmental</div>
+        <div class="deal-meta"><span class="badge badge-wnc">3.0 WNC Potential</span><span class="badge badge-stage">Evaluate</span><span class="badge badge-orange">Max / Alex Support</span></div>
+        <ul class="deal-detail"><li>Eval kit in hand; fleet potential around 80 ships.</li><li>Need to understand whether HMI is online and how evaluation is progressing.</li><li><strong>Next action:</strong> loop in Max, possibly Alex, and convert technical progress into fleet-rollout criteria.</li></ul>
+      </div>
+      <div class="deal-card strategic">
+        <div class="deal-name">Jewett Automation</div>
+        <div class="deal-meta"><span class="badge badge-wnc">3.0 WNC Potential</span><span class="badge badge-stage">Evaluate / Pilot</span><span class="badge badge-orange">Restart Needed</span></div>
+        <ul class="deal-detail"><li>Josh Fannin said he lost R&D sponsor; momentum has drifted.</li><li>Best wedge may be customer project that needs data once parts arrive.</li><li><strong>Next action:</strong> introduce Max to Josh, ask about project parts timeline, and get Josh hands-on to create internal proof.</li></ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--ixon-blue)"></div><h2>Strategic Seed — ProMach / Rennco</h2></div>
+    <div class="mini"><strong>Current read:</strong> ProMach is still strategic, but the practical starting point is to reach out to the Rennco contact from MODEX and ask whether they would take a meeting as a potential adoption “guinea pig” account. This keeps the motion grounded in one brand/use case instead of forcing a broad enterprise conversation too early.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--purple)"></div><h2>SaaS / ARR Pipeline & Renewal Focus</h2></div>
+    <table class="table">
+      <thead><tr><th>Account</th><th>Motion</th><th>ARR / SaaS View</th><th>Status / Next Move</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Boomerang Water</strong></td><td>SaaS Proposal</td><td class="amount">$20,400 first-year offer</td><td>Needs business case refresh before follow-up. Use current StrideLinx/license cost picture, commissioned vs. non-commissioned fleet, and consolidation value to create stronger close-path presentation for Zach.</td></tr>
+        <tr><td><strong>UFP Packaging</strong></td><td>Renewal + Upsell</td><td class="amount">At least ~$7.5K net-new uplift</td><td>June 19 renewal. First-year 50% discount ends. Pull prior checkpoint notes and schedule Matt Hinton meeting with Max/Alex. Commercial handling may need Brandon alignment.</td></tr>
+        <tr><td><strong>HEMSAW</strong></td><td>Post-close SaaS Expansion</td><td class="amount">Future Q3 candidate; RA Plus + Service Portal likely ~$10K–$12K range pending final package</td><td>10 devices purchased; 75+/year plus retrofit potential. Schedule thank-you/onboarding call around users, roles, permissions, user management, and SaaS roadmap. Existing cloud instance creates fork/hybrid architecture question.</td></tr>
+        <tr><td><strong>Keller / KGS</strong></td><td>Machine Insights + API + App Engine</td><td class="amount">Major global upside; Mature tier alone = £51,840/year annualized before add-ons</td><td>Germany technical foundation already built; Sergej/Thomas are relying on NA orchestration to sell internal adoption. Thomas loved Vecoplan US proof point. Need next-week touchpoint, Luke/Zach portal/commercial structure input, DPF downtime business case, and proposed next-steps email.</td></tr>
+        <tr><td><strong>Orenco / Infiltrator</strong></td><td>Scale-up / Data Studio tier expansion</td><td class="amount">Q3/Q4 candidate; 100 tier now, 250 or Mature could be +$30K–$40K range depending requirements</td><td>Currently at 100 Launch tier. Scale-up is expected “soon” after acquisition/security approvals, but billing must be fixed first. Customer asked how prior Infiltrator payment applies and whether this changes the business model communicated to Bill Gill. Need finance/contracts help and one accurate response before pushing scale-up.</td></tr>
+        <tr><td><strong>Bradbury Group</strong></td><td>Renewal + Dashboard Expansion</td><td>Renewal pending; 5% uplift</td><td>Contract was voided; needs signature path cleaned up. Protect discount/trust first, then revisit dashboards/MAP already sent with Max and Alex copied.</td></tr>
+        <tr><td><strong>Synlog</strong></td><td>Renewal Risk</td><td class="risk-text">Concern / possible reduction</td><td>June 22 renewal. Eduardo is going through chemotherapy and has discussed possibly turning off the white-labeled app. Handle personally first, commercial conversation second.</td></tr>
+        <tr><td><strong>MiTek</strong></td><td>Renewal + Scale-Up Readiness</td><td>Future API / Edge App Management; immediate hardware scale priority</td><td>June 29 renewal. SSO/SCIM and user access groups are current blocker to broader Secure Edge Pro scale-up. Recent 9-router order for US plant; long-term path could exceed 1,200 Secure Edge Pros.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--green)"></div><h2>Closed Won → Adoption / Expansion Path</h2></div>
+    <div class="deal-grid">
+      <div class="deal-card hot">
+        <div class="deal-name">HEMSAW</div>
+        <div class="deal-meta"><span class="badge badge-wnc">3.0 WNC Closed</span><span class="badge badge-saas">Q3 SaaS Candidate</span><span class="badge badge-stage">Post-Close</span></div>
+        <ul class="deal-detail"><li>Need thank-you/order follow-up and intro call around user management, roles, permissions, and scale-up planning.</li><li>Interested in Remote Access Plus, Service Portal, and possibly Machine Insights.</li><li>Clarify fork/hybrid strategy with their existing cloud instance.</li></ul>
+      </div>
+      <div class="deal-card hot">
+        <div class="deal-name">Spartan Light Metal Products</div>
+        <div class="deal-meta"><span class="badge badge-wnc">1.0 WNC Closed</span><span class="badge badge-stage">Post-Close</span><span class="badge badge-orange">Shipping / Handoff</span></div>
+        <ul class="deal-detail"><li>PO submitted / WNC approval signal received.</li><li>Needs delivery ETA, Alex handoff, and first activation/user setup.</li><li>Potential parent/sister-division expansion if first deployment goes well.</li></ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--red)"></div><h2>Leadership Visibility — Billing / Commercial Friction</h2></div>
+    <div class="deal-card risk">
+      <div class="deal-name">Orenco / Infiltrator</div>
+      <div class="deal-meta"><span class="badge badge-saas">SaaS Scale-Up Candidate</span><span class="badge badge-red">Billing Blocker</span><span class="badge badge-stage">Q3/Q4 Potential</span></div>
+      <ul class="deal-detail">
+        <li>Currently at 100 Launch tier; future scale-up to 250 or Mature could create a large SaaS increase once requirements and ramp timing are clear.</li>
+        <li>Bill Cagle asked how much Infiltrator has already paid toward Year 3 and whether the corrected billing changes what was communicated to Bill Gill for the high-volume business model.</li>
+        <li>This answer needs finance/contracts accuracy — do not guess. Internal ownership needed to resolve billing cleanly before future expansion conversation.</li>
+        <li><strong>Commercial read:</strong> SaaS scale-up could be Q3 or Q4 depending on acquisition/security approvals, adoption requirements, and high-volume product ramp.</li>
+        <li><strong>Leadership point:</strong> this account has consumed hours of avoidable billing cleanup; need corporate/finance/contracts to get aligned so revenue expansion is not blocked by invoice confusion.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--ixon-blue)"></div><h2>Immediate Action List</h2></div>
+    <table class="table">
+      <thead><tr><th>Priority</th><th>Account</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Revere</strong></td><td>Follow up on PO for 2 quoted routers.</td></tr>
+        <tr><td>2</td><td><strong>SS Automation</strong></td><td>Schedule formal meeting with Marcus; push toward additional 4-router order path.</td></tr>
+        <tr><td>3</td><td><strong>Keller / KGS</strong></td><td>Send Thomas/Sergej proposed next steps after strategy time, confirm US Secure Edge Pro shipment details, quantify DPF/filter downtime value case, engage Luke/Zach on portal/SaaS structure, and use Vecoplan US as proof point.</td></tr>
+        <tr><td>4</td><td><strong>HEMSAW</strong></td><td>Send thank-you/order follow-up and schedule onboarding/SaaS roadmap intro.</td></tr>
+        <tr><td>5</td><td><strong>Vigilant</strong></td><td>Loop in Max, possibly Alex; check eval/HMI status and fleet-rollout criteria.</td></tr>
+        <tr><td>6</td><td><strong>Jewett</strong></td><td>Introduce Max to Josh; ask about customer project parts timeline.</td></tr>
+        <tr><td>7</td><td><strong>Boomerang Water</strong></td><td>Build business case presentation for Zach around $20,400 offer and consolidation value.</td></tr>
+        <tr><td>8</td><td><strong>UFP Packaging</strong></td><td>Pull prior notes; schedule Matt Hinton meeting with Max/Alex before June 19 renewal.</td></tr>
+        <tr><td>9</td><td><strong>Bradbury</strong></td><td>Clarify renewal/discount/signature path after voided contract.</td></tr>
+        <tr><td>10</td><td><strong>Synlog</strong></td><td>Personal check-in with Eduardo before renewal/app conversation.</td></tr>
+        <tr><td>11</td><td><strong>MiTek</strong></td><td>Schedule SSO/SCIM scale-up alignment meeting with Alex involved.</td></tr>
+        <tr><td>12</td><td><strong>Orenco / Infiltrator</strong></td><td>Get finance/contracts answer on Infiltrator payment application and Bill Gill business-model impact; do not speculate.</td></tr>
+        <tr><td>13</td><td><strong>ProMach / Rennco</strong></td><td>Reach out to Rennco contact from MODEX to explore adoption guinea-pig account / starting point for broader ProMach motion.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="dot" style="background:var(--ixon-dark)"></div><h2>Meeting Talking Points</h2></div>
+    <div class="mini">
+      <ul>
+        <li><strong>WNC:</strong> Q2 is at 4.3 closed with approximately 14.0 WNC active functional pipeline. Revere + SS Automation are the cleanest near-term 2.0 points; Custom Automated Machines, Keller/KGS, Vigilant, and Jewett represent larger strategic pipeline.</li>
+        <li><strong>Keller/KGS:</strong> treat as 3.0 WNC functional pipeline plus major global SaaS opportunity. Germany/KGS technical foundation is built; North America is the critical adoption gate. Sergej/Thomas are relying on Phil to translate this into a NA adoption story. DPF/filter downtime prevention is the clearest business wedge, and Vecoplan US is the strongest nearby proof point for the two-environment/portal structure.</li>
+        <li><strong>Strategic evals:</strong> Vigilant and Jewett need Max/Alex support so they do not become technical curiosity without commercial movement.</li>
+        <li><strong>SaaS:</strong> Boomerang ($20.4K) and UFP (at least ~$7.5K net-new uplift) are the near-term visible SaaS paths; HEMSAW, Keller, and Orenco are future/upside candidates.</li>
+        <li><strong>Risk:</strong> Synlog is sensitive due to Eduardo’s health situation and possible white-label app reduction; handle with care.</li>
+        <li><strong>Orenco:</strong> billing needs to be fixed with one accurate finance/contracts answer before pushing the next scale-up conversation; possible Q3/Q4 SaaS expansion if they move from 100 tier toward 250/Mature.</li>
+        <li><strong>ProMach:</strong> start with Rennco as a potential adoption guinea-pig from MODEX rather than trying to boil the ocean across ProMach immediately.</li>
+        <li><strong>Operating thesis:</strong> hardware threshold execution first, adoption second, SaaS only where installed base, trust, and business value are real.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer"><div>IXON Cloud North America · Confidential</div><div>Generated May 8, 2026</div></div>
+</div>
+</body>
+</html>
