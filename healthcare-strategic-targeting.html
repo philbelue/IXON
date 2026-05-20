@@ -1,0 +1,2919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Healthcare Strategic Targeting Initiative</title>
+<meta name="description" content="Operationally-aligned enterprise account strategy for acute-care healthcare systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM
+   ============================================================ */
+:root {
+  --bg-deep: #07111F;
+  --bg-surface: #0B1929;
+  --bg-elevated: #11233A;
+  --bg-card: rgba(22, 41, 66, 0.55);
+  --bg-card-hover: rgba(28, 53, 85, 0.75);
+
+  --blue: #1059D2;
+  --blue-soft: #2E73E5;
+  --blue-dim: rgba(16, 89, 210, 0.18);
+
+  --teal: #17BEBB;
+  --teal-soft: #3FD4D1;
+  --teal-dim: rgba(23, 190, 187, 0.16);
+
+  --gold: #F5B700;
+  --gold-soft: #FFC933;
+  --gold-dim: rgba(245, 183, 0, 0.16);
+
+  --text: #F3F4FA;
+  --text-dim: #A6B0C3;
+  --text-muted: #6B7895;
+
+  --border: rgba(243, 244, 250, 0.08);
+  --border-strong: rgba(243, 244, 250, 0.16);
+
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.25);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.35);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.45);
+  --shadow-glow: 0 0 40px rgba(23, 190, 187, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(16, 89, 210, 0.12), transparent 50%),
+    radial-gradient(circle at 85% 40%, rgba(23, 190, 187, 0.08), transparent 50%),
+    radial-gradient(circle at 50% 95%, rgba(245, 183, 0, 0.05), transparent 50%);
+  background-attachment: fixed;
+}
+
+::selection { background: var(--teal); color: var(--bg-deep); }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: rgba(7, 17, 31, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-brand .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.sidebar-brand .mark::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--teal);
+  box-shadow: 0 0 12px var(--teal);
+}
+
+.sidebar-brand .meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.nav-section { display: flex; flex-direction: column; gap: 4px; }
+.nav-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  padding-left: 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 2px solid transparent;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--blue-dim);
+  color: var(--text);
+  border-left-color: var(--teal);
+}
+
+.nav-item .nav-idx {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 18px;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-foot {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.sidebar-foot strong { color: var(--text-dim); font-weight: 600; }
+
+/* Mobile nav toggle */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main content */
+.main {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+section {
+  padding: 96px 0 72px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 24px;
+}
+
+section:last-child { border-bottom: none; }
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 48px;
+  max-width: 820px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--teal);
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-lede {
+  font-size: 17px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgba(23, 190, 187, 0.12), transparent 60%),
+    linear-gradient(135deg, transparent 0%, rgba(16, 89, 210, 0.08) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--teal-dim);
+  border: 1px solid rgba(23, 190, 187, 0.3);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-soft);
+  margin-bottom: 20px;
+}
+
+.hero-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  background: linear-gradient(135deg, #F3F4FA 0%, #A6B0C3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.hero h2 {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 400;
+  color: var(--text-dim);
+  max-width: 700px;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0;
+}
+
+.hero-meta {
+  text-align: right;
+  font-size: 13px;
+  color: var(--text-dim);
+  border-left: 2px solid var(--teal);
+  padding-left: 16px;
+}
+
+.hero-meta strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin-bottom: 4px;
+  letter-spacing: 0;
+}
+
+.hero-meta .muted {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  max-width: 240px;
+  line-height: 1.5;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat {
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.stat-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-value .unit { font-size: 16px; color: var(--teal); font-weight: 500; }
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============================================================
+   THESIS / INFO CARDS
+   ============================================================ */
+.thesis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.thesis-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.thesis-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  opacity: 0.6;
+}
+
+.thesis-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.thesis-card .num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.thesis-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.thesis-card p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   APPROACH / TWO COLUMN
+   ============================================================ */
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.approach-panel {
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.approach-panel.old {
+  background: linear-gradient(135deg, rgba(108, 92, 102, 0.08), rgba(7, 17, 31, 0.4));
+}
+
+.approach-panel.new {
+  background: linear-gradient(135deg, var(--teal-dim), rgba(16, 89, 210, 0.1));
+  border-color: rgba(23, 190, 187, 0.25);
+}
+
+.panel-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.approach-panel.old .panel-label { color: var(--text-muted); }
+.approach-panel.new .panel-label { color: var(--teal); }
+
+.approach-panel h3 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+.approach-list { list-style: none; }
+
+.approach-list li {
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+
+.approach-list li:last-child { border-bottom: none; }
+
+.approach-list li::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.approach-panel.new .approach-list li::before { background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+.approach-callout {
+  margin-top: 40px;
+  padding: 24px 28px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+  border-left: 3px solid var(--gold);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.approach-callout strong { color: var(--gold); font-weight: 600; }
+
+/* ============================================================
+   ACCOUNT TIERS
+   ============================================================ */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 220px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(23, 190, 187, 0.15);
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.filter-select {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-select:hover, .filter-select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.chip {
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.chip:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+
+.chip.active {
+  background: var(--blue-dim);
+  border-color: var(--blue);
+  color: var(--text);
+}
+
+.results-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.results-meta span { color: var(--teal); font-weight: 600; }
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.account-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.account-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--text-muted);
+  transition: var(--transition);
+}
+
+.account-card[data-priority="P0"]::before { background: var(--gold); box-shadow: 0 0 12px rgba(245,183,0,0.4); }
+.account-card[data-priority="P1"]::before { background: var(--teal); }
+.account-card[data-priority="P2"]::before { background: var(--blue); }
+
+.account-card:hover {
+  transform: translateY(-3px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.account-card.expanded {
+  background: var(--bg-card-hover);
+  border-color: rgba(23, 190, 187, 0.4);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.acc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.acc-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.acc-states {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.acc-score {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.acc-score .val {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.acc-score .lbl {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.acc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.acc-tag {
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+}
+
+.acc-tag.trigger { background: var(--gold-dim); color: var(--gold-soft); border-color: rgba(245,183,0,0.25); }
+.acc-tag.complexity { background: var(--blue-dim); color: var(--blue-soft); border-color: rgba(16,89,210,0.3); }
+
+.acc-summary {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+.acc-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.priority-badge[data-p="P0"] { background: var(--gold-dim); color: var(--gold-soft); }
+.priority-badge[data-p="P1"] { background: var(--teal-dim); color: var(--teal-soft); }
+.priority-badge[data-p="P2"] { background: var(--blue-dim); color: var(--blue-soft); }
+
+.expand-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Expanded panel */
+.acc-detail {
+  display: none;
+  margin-top: 6px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  flex-direction: column;
+  gap: 18px;
+  animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.account-card.expanded .acc-detail { display: flex; }
+
+.detail-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.detail-value {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.detail-value ul { list-style: none; padding: 0; }
+.detail-value li {
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.detail-value li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 11px;
+}
+
+.outreach-block {
+  background: linear-gradient(135deg, var(--blue-dim), transparent);
+  border-left: 2px solid var(--blue-soft);
+  padding: 14px 16px;
+  border-radius: 4px;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.tier-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 24px;
+}
+
+.tier-divider h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.tier-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+}
+
+.tier-divider .count {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================================
+   CAMPAIGN SEQUENCE
+   ============================================================ */
+.sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.seq-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+  position: relative;
+}
+
+.seq-step:hover {
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+  border-color: var(--border-strong);
+}
+
+.seq-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--teal), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.seq-body h3 {
+  font-size: 19px;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.seq-obj {
+  font-size: 13px;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.seq-message {
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid var(--teal);
+  border-radius: 4px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.seq-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.seq-meta strong {
+  display: block;
+  color: var(--teal);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.seq-meta .seq-meta-item {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ============================================================
+   MESSAGING LIBRARY
+   ============================================================ */
+.msg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+.msg-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  transition: var(--transition);
+}
+
+.msg-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+}
+
+.msg-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.msg-type.email { color: var(--teal); }
+.msg-type.linkedin { color: var(--blue-soft); }
+.msg-type.call { color: var(--gold); }
+.msg-type.followup { color: var(--text-dim); }
+
+.msg-type::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.msg-subject {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.msg-body {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.msg-pull {
+  margin-top: 32px;
+  padding: 32px 36px;
+  background: linear-gradient(135deg, var(--blue-dim), var(--teal-dim));
+  border: 1px solid rgba(23, 190, 187, 0.2);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.msg-pull p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.msg-pull p::before, .msg-pull p::after {
+  color: var(--teal);
+  font-size: 28px;
+  vertical-align: text-top;
+}
+
+.msg-pull p::before { content: '" '; }
+.msg-pull p::after { content: ' "'; }
+
+/* ============================================================
+   PERSONAS
+   ============================================================ */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.persona-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.persona-card::after {
+  content: '';
+  position: absolute;
+  top: -20%; right: -20%;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--teal-dim), transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.persona-card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.persona-card:hover::after { opacity: 1; }
+
+.persona-role {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.persona-tagline {
+  font-size: 12px;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.persona-block { margin-bottom: 14px; position: relative; z-index: 1; }
+.persona-block:last-child { margin-bottom: 0; }
+
+.persona-block-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.persona-block-value {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   WHY NOW
+   ============================================================ */
+.why-now-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.why-card {
+  padding: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.why-card .icon {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.why-card h4 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.why-card p {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   NEXT STEPS / ROADMAP
+   ============================================================ */
+.roadmap {
+  position: relative;
+  padding-left: 32px;
+}
+
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--teal), var(--blue), var(--gold));
+}
+
+.roadmap-item {
+  position: relative;
+  padding: 18px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+}
+
+.roadmap-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--teal);
+  box-shadow: 0 0 0 4px var(--bg-deep);
+}
+
+.roadmap-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  transform: translateX(4px);
+}
+
+.roadmap-item h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roadmap-item h4 .step-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  color: var(--teal);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.roadmap-item p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   CLOSING
+   ============================================================ */
+.closing {
+  text-align: center;
+  padding: 96px 0 120px;
+  position: relative;
+}
+
+.closing::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--teal-dim), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.closing-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+.closing h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.closing p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.closing .signoff {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.closing .signoff strong { color: var(--text); display: block; margin-bottom: 4px; font-family: 'Poppins', sans-serif; font-weight: 600;}
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .approach-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    transition: left 0.3s ease;
+    z-index: 200;
+  }
+  .sidebar.open { left: 0; }
+  .mobile-toggle { display: flex; }
+  .main { padding: 0 24px; padding-top: 72px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-meta { text-align: left; border-left: none; border-top: 2px solid var(--teal); padding-left: 0; padding-top: 12px; }
+  .seq-step { grid-template-columns: 1fr; gap: 12px; }
+  .seq-num { font-size: 36px; }
+  .section-title { font-size: 30px; }
+  section { padding: 64px 0 48px; }
+  .hero { padding: 60px 0 40px; }
+  .filter-bar { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 560px) {
+  .hero-stats { grid-template-columns: 1fr; }
+}
+
+/* Subtle grain overlay for depth */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+
+<div class="app">
+
+  <!-- ============================================================
+       SIDEBAR
+       ============================================================ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="mark">Strategic Targeting</div>
+      <div class="meta">Healthcare Account Intelligence</div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Framework</div>
+      <a class="nav-item active" data-target="thesis"><span class="nav-idx">01</span>Executive Thesis</a>
+      <a class="nav-item" data-target="approach"><span class="nav-idx">02</span>Why This Approach</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Territory</div>
+      <a class="nav-item" data-target="accounts"><span class="nav-idx">03</span>Account Tiers</a>
+      <a class="nav-item" data-target="campaign"><span class="nav-idx">04</span>Campaign Sequence</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Execution</div>
+      <a class="nav-item" data-target="messaging"><span class="nav-idx">05</span>Messaging Library</a>
+      <a class="nav-item" data-target="personas"><span class="nav-idx">06</span>Persona Map</a>
+      <a class="nav-item" data-target="whynow"><span class="nav-idx">07</span>Why Now</a>
+      <a class="nav-item" data-target="roadmap"><span class="nav-idx">08</span>Next Steps</a>
+    </div>
+
+    <div class="sidebar-foot">
+      <strong>Prepared by Kristen</strong>
+      Built from leadership feedback to improve strategic targeting and outreach relevance.
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       MAIN
+       ============================================================ -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag"><span class="dot"></span>Internal Initiative · v1.0</div>
+          <h1>Healthcare Strategic Targeting Initiative</h1>
+          <h2>Operationally-aligned enterprise account strategy for acute-care healthcare systems across the Upper Midwest territory.</h2>
+        </div>
+        <div class="hero-meta">
+          <strong>Prepared by Kristen</strong>
+          Internal · For Discussion
+          <div class="muted">Built from leadership feedback to improve strategic targeting and outreach relevance. Open to refinement.</div>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">37</div>
+          <div class="stat-label">Strategic Accounts</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">8<span class="unit"> states</span></div>
+          <div class="stat-label">Territory Coverage</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Outbound Phases</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Executive Personas</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THESIS -->
+    <section id="thesis">
+      <div class="section-head">
+        <span class="eyebrow">01 · Executive Thesis</span>
+        <h2 class="section-title">Healthcare systems aren't maintenance prospects. They're operational complexity at scale.</h2>
+        <p class="section-lede">The strongest opportunity areas in healthcare facilities operations sit upstream of work orders — in compliance defensibility, capital project commissioning, multi-site standardization, and the operational governance required to run distributed clinical environments without operational drift.</p>
+      </div>
+
+      <div class="thesis-grid">
+        <div class="thesis-card reveal">
+          <div class="num">01</div>
+          <h3>Environment of Care</h3>
+          <p>EOC programs cross Facilities, Safety, EVS, and Clinical Engineering. Most systems lack a single operational source of truth, creating audit risk under Joint Commission and DNV survey cycles.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">02</div>
+          <h3>Joint Commission / DNV Readiness</h3>
+          <p>Compliance defensibility is increasingly evidence-based. Systems that can produce documented work history, PM completion, and asset compliance status on demand outperform on survey outcomes.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">03</div>
+          <h3>HTM / Clinical Engineering</h3>
+          <p>Clinical engineering operations are converging with facilities. Unified asset visibility across both biomed and facilities equipment is becoming a board-level operational requirement.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">04</div>
+          <h3>Asset Lifecycle Governance</h3>
+          <p>Aging infrastructure across acute-care systems is creating capital pressure. Systems need defensible lifecycle data to prioritize replacement, defer responsibly, and protect the capital budget.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">05</div>
+          <h3>Capital Planning</h3>
+          <p>Major construction, renovation, and acquisition activity creates commissioning, asset onboarding, and operational handoff complexity that legacy systems were not built to handle.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">06</div>
+          <h3>Space Management</h3>
+          <p>Clinical space utilization, infection prevention zoning, and renovation churn require dynamic space governance. Static floor plans are no longer sufficient.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">07</div>
+          <h3>Multi-Site Standardization</h3>
+          <p>Merged, acquired, and expanded systems inherit fragmented operational stacks. Standardization across campuses is one of the highest-leverage operational initiatives a system can run.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">08</div>
+          <h3>Work Order Governance</h3>
+          <p>Volume isn't the problem. Governance is. Routing, prioritization, vendor coordination, and completion verification across distributed environments drives operational signal quality.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">09</div>
+          <h3>Deferred Maintenance Visibility</h3>
+          <p>Most systems can't quantify their deferred maintenance liability with operational confidence. That gap creates audit, safety, and capital allocation risk.</p>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="num">10</div>
+          <h3>Compliance Defensibility</h3>
+          <p>Operational evidence — not policy — is what stands up under survey. Systems need an operational record that holds up to CMS, Joint Commission, DNV, and state regulators simultaneously.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section id="approach">
+      <div class="section-head">
+        <span class="eyebrow">02 · Why This Approach</span>
+        <h2 class="section-title">Reframing the territory around operational signal, not bed count.</h2>
+        <p class="section-lede">Bed-count tiering is the right starting filter. It is not, on its own, the right qualification framework. This approach layers strategic operational triggers on top of the existing target list to improve conversation relevance and executive alignment.</p>
+      </div>
+
+      <div class="approach-grid">
+        <div class="approach-panel old reveal">
+          <div class="panel-label">Current Default</div>
+          <h3>Volume-driven outbound</h3>
+          <ul class="approach-list">
+            <li>Bed count as primary qualifier</li>
+            <li>Generic facility management pitch</li>
+            <li>Sequence-led, not signal-led</li>
+            <li>Conversations land at coordinator level</li>
+            <li>Pipeline measured by activity, not quality</li>
+            <li>Lists treated as the input, not the strategy</li>
+          </ul>
+        </div>
+
+        <div class="approach-panel new reveal">
+          <div class="panel-label">This Framework</div>
+          <h3>Signal-driven targeting</h3>
+          <ul class="approach-list">
+            <li>Operational complexity layered onto bed count</li>
+            <li>Trigger-event sequencing (M&amp;A, capital, survey, leadership)</li>
+            <li>Account-specific operational point of view</li>
+            <li>Executive-level language, executive-level access</li>
+            <li>Conversation quality as the leading indicator</li>
+            <li>Lists as raw material, strategy as the multiplier</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="approach-callout reveal">
+        <strong>Goal:</strong> Improve conversation relevance, strategic alignment, and meeting quality — not replace activity. Dial volume and discipline still matter. What changes is what we say when someone picks up.
+      </div>
+    </section>
+
+    <!-- ACCOUNTS -->
+    <section id="accounts">
+      <div class="section-head">
+        <span class="eyebrow">03 · Account Tiers</span>
+        <h2 class="section-title">37 strategic accounts. Filtered by operational signal, not bed count.</h2>
+        <p class="section-lede">Every account is scored on strategic fit, tagged with current trigger events, and includes a suggested outreach angle. Click any card to expand full operational context, personas, and a copy-paste outreach opener.</p>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search accounts by name or state…" />
+        <select class="filter-select" id="stateFilter">
+          <option value="">All States</option>
+          <option value="IL">Illinois</option>
+          <option value="IA">Iowa</option>
+          <option value="MN">Minnesota</option>
+          <option value="WI">Wisconsin</option>
+          <option value="SD">South Dakota</option>
+          <option value="ND">North Dakota</option>
+          <option value="MO">Missouri</option>
+          <option value="IN">Indiana</option>
+        </select>
+        <select class="filter-select" id="tierFilter">
+          <option value="">All Tiers</option>
+          <option value="1">Tier 1</option>
+          <option value="2">Tier 2</option>
+        </select>
+        <select class="filter-select" id="priorityFilter">
+          <option value="">All Priorities</option>
+          <option value="P0">P0 — Top Priority</option>
+          <option value="P1">P1 — High Priority</option>
+          <option value="P2">P2 — Active</option>
+        </select>
+
+        <div class="chip-row">
+          <div class="chip" data-flag="merger">Merger Activity</div>
+          <div class="chip" data-flag="amc">Academic Medical Center</div>
+          <div class="chip" data-flag="regional">Regional System</div>
+          <div class="chip" data-flag="expansion">Expansion Activity</div>
+          <div class="chip" data-flag="multi">Multi-Hospital</div>
+          <div class="chip" data-flag="rural">Rural Network</div>
+          <div class="chip" data-flag="acuity">High Acuity</div>
+        </div>
+      </div>
+
+      <div class="results-meta">Showing <span id="resultCount">37</span> of 37 accounts</div>
+
+      <div id="accountsContainer"></div>
+    </section>
+
+    <!-- CAMPAIGN -->
+    <section id="campaign">
+      <div class="section-head">
+        <span class="eyebrow">04 · Campaign Sequence</span>
+        <h2 class="section-title">A five-phase outbound architecture built for executive-level access.</h2>
+        <p class="section-lede">Each phase has a single objective. The point isn't to "touch" an account — it's to earn each next conversation by saying something operationally specific that the prior message couldn't have said.</p>
+      </div>
+
+      <div class="sequence">
+        <div class="seq-step reveal">
+          <div class="seq-num">01</div>
+          <div class="seq-body">
+            <h3>Strategic Familiarity</h3>
+            <div class="seq-obj">Objective · Earn name recognition without asking for anything.</div>
+            <div class="seq-message">"Saw the Bold Forward expansion news from Mayo this week — interesting commissioning challenge across a project of that scale. Not pitching anything. Just wanted to put a name to your inbox in case our path crosses around facility operational governance down the road."</div>
+            <div class="seq-meta">
+              <div class="seq-meta-item"><strong>Channel</strong>LinkedIn + email</div>
+              <div class="seq-meta-item"><strong>CTA</strong>None — name recognition only</div>
+              <div class="seq-meta-item"><strong>Cadence</strong>1 touch, low pressure</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seq-step reveal">
+          <div class="seq-num">02</div>
+          <div class="seq-body">
+            <h3>Problem Identification</h3>
+            <div class="seq-obj">Objective · Surface a real operational tension specific to their environment.</div>
+            <div class="seq-message">"Quick observation — most systems coming out of a merger spend the first 18 months reconciling work order governance across two operational stacks. Curious whether that's been on Froedtert ThedaCare's radar yet, or if integration sequencing has pushed it out further."</div>
+            <div class="seq-meta">
+              <div class="seq-meta-item"><strong>Channel</strong>Email + dial</div>
+              <div class="seq-meta-item"><strong>CTA</strong>Light question, not a meeting</div>
+              <div class="seq-meta-item"><strong>Cadence</strong>2–3 days after touch 1</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seq-step reveal">
+          <div class="seq-num">03</div>
+          <div class="seq-body">
+            <h3>Operational Reframe</h3>
+            <div class="seq-obj">Objective · Reframe their current state through a strategic operational lens.</div>
+            <div class="seq-message">"Most systems treat CMMS as a work order tool. The ones doing this well treat it as their operational evidence layer — the system of record that holds up under Joint Commission survey, capital planning review, and merger due diligence. Worth a 15-minute conversation about how that's framed at the executive level?"</div>
+            <div class="seq-meta">
+              <div class="seq-meta-item"><strong>Channel</strong>LinkedIn message + voicemail</div>
+              <div class="seq-meta-item"><strong>CTA</strong>15-minute conversation</div>
+              <div class="seq-meta-item"><strong>Cadence</strong>5–7 days after touch 2</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seq-step reveal">
+          <div class="seq-num">04</div>
+          <div class="seq-body">
+            <h3>Executive Discovery</h3>
+            <div class="seq-obj">Objective · Earn a discovery conversation framed at the operational governance level.</div>
+            <div class="seq-message">"The reason I'm reaching out is specific — not generic. Your system is in active expansion and we're seeing systems at that scale hit operational governance friction within 12 months of new capacity coming online. I'd like to understand how you're thinking about commissioning, asset lifecycle, and survey defensibility going into FY26."</div>
+            <div class="seq-meta">
+              <div class="seq-meta-item"><strong>Channel</strong>Direct dial + email</div>
+              <div class="seq-meta-item"><strong>CTA</strong>30-minute executive discovery</div>
+              <div class="seq-meta-item"><strong>Cadence</strong>7 days after touch 3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seq-step reveal">
+          <div class="seq-num">05</div>
+          <div class="seq-body">
+            <h3>Business Case Alignment</h3>
+            <div class="seq-obj">Objective · Translate the operational conversation into a measurable business outcome.</div>
+            <div class="seq-message">"Quick recap on where this fits — three operational outcomes I'd anchor this conversation around: defensible compliance evidence, capital planning visibility, and multi-site standardization. If any one of those is a FY priority on your side, that's the right place for us to start."</div>
+            <div class="seq-meta">
+              <div class="seq-meta-item"><strong>Channel</strong>Email recap + scheduled follow-up</div>
+              <div class="seq-meta-item"><strong>CTA</strong>Working session w/ ops leader</div>
+              <div class="seq-meta-item"><strong>Cadence</strong>Post-discovery, within 5 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESSAGING -->
+    <section id="messaging">
+      <div class="section-head">
+        <span class="eyebrow">05 · Messaging Library</span>
+        <h2 class="section-title">Executive-grade language. Copy-paste ready.</h2>
+        <p class="section-lede">Tactical openers and snippets that match the executive operating model of healthcare systems. Designed to be tuned to the account, not used verbatim — but usable as-is when the trigger fits.</p>
+      </div>
+
+      <div class="msg-pull reveal">
+        <p>We're not trying to sell maintenance software. We're trying to understand how large healthcare systems operationalize consistency across complex care environments.</p>
+      </div>
+
+      <div class="msg-grid" style="margin-top: 32px;">
+
+        <div class="msg-card reveal">
+          <div class="msg-type email">Cold Email · M&amp;A Trigger</div>
+          <div class="msg-subject">Post-merger operational governance — Froedtert ThedaCare</div>
+          <div class="msg-body">Hi [Name],
+
+Most systems coming out of a merger of this scale spend the first 12–18 months reconciling work order governance, asset records, and EOC programs across two operational stacks.
+
+Not pitching software. Curious whether that integration sequencing has surfaced any operational governance pressure yet, or if it's still ahead of you.
+
+Happy to share what we've seen at systems running parallel playbooks if useful.
+
+— Kristen</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type linkedin">LinkedIn Opener · Capital Expansion</div>
+          <div class="msg-body">Saw the Vision Northland coverage — interesting commissioning and asset onboarding challenge at that scale.
+
+We've been working with health systems running similar capital programs around how facility operational data carries forward into the new asset base.
+
+Not asking for a meeting — just wanted to be on your radar if that ever becomes a topic worth a conversation.</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type call">Call Opener · Survey Readiness</div>
+          <div class="msg-body">Hi [Name], Kristen with FSI — quick reason for the call.
+
+Most VPs of Facilities I'm talking to right now have one question coming up at the board level: can we produce defensible operational evidence on demand when Joint Commission walks in.
+
+I'm not selling anything on this call — I'm trying to understand how that's framed on your end. Got two minutes for me to ask one question?</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type email">Cold Email · Multi-Site Standardization</div>
+          <div class="msg-subject">Multi-campus operational standardization — Advocate Health</div>
+          <div class="msg-body">Hi [Name],
+
+When systems integrate at the scale Advocate has, the operational standardization question becomes a board-level conversation within 24 months — not whether it's needed, but how fast.
+
+I work with systems on the operational governance layer that sits underneath that — work order routing, asset lifecycle, EOC consistency across markets.
+
+Worth 20 minutes to compare notes on how you're thinking about that across the system?
+
+— Kristen</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type linkedin">LinkedIn Opener · HTM Convergence</div>
+          <div class="msg-body">Quick note — seeing more systems consolidate facilities and HTM operational visibility under one operational source of truth.
+
+Curious how that's structured on your end, or whether biomed and facilities are still running on separate stacks.
+
+Either way, would value the perspective.</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type email">Email · Deferred Maintenance Angle</div>
+          <div class="msg-subject">Deferred maintenance visibility — quick question</div>
+          <div class="msg-body">Hi [Name],
+
+One quick question — when your team is asked to defend the deferred maintenance number going into a capital cycle, where does that data live and how much manual effort goes into pulling it together?
+
+That's usually the operational tension that surfaces a real conversation. If it's a non-issue, no follow-up needed. If it's a friction point, I'd like 15 minutes.
+
+— Kristen</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type followup">Voicemail · Trigger-Specific</div>
+          <div class="msg-body">Hi [Name], Kristen with FSI. Reason for the call is specific — not generic.
+
+I saw the announcement around [trigger event]. We typically see operational governance pressure show up about 9–12 months after that kind of activity, and I want to be in front of that — not behind it.
+
+I'll follow up by email. If now's not the right time, just tell me when is — I'll respect that.</div>
+        </div>
+
+        <div class="msg-card reveal">
+          <div class="msg-type linkedin">LinkedIn · Executive Reframe</div>
+          <div class="msg-body">One framing I keep coming back to —
+
+Healthcare operational complexity compounds faster than most organizations standardize it. Most operational risk becomes visible during audits, outages, mergers, or expansion.
+
+The systems doing this well are treating operational evidence as a strategic asset, not a maintenance department line item.
+
+Curious how that lands with how you're framing the next 12 months.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONAS -->
+    <section id="personas">
+      <div class="section-head">
+        <span class="eyebrow">06 · Persona Map</span>
+        <h2 class="section-title">Eight executive personas. One operating language.</h2>
+        <p class="section-lede">Each persona owns a different slice of the operational picture. The unifying language is the same — operational governance, defensibility, capital alignment — but the framing shifts based on what they're measured on.</p>
+      </div>
+
+      <div class="persona-grid">
+
+        <div class="persona-card reveal">
+          <div class="persona-role">VP / SVP Facilities</div>
+          <div class="persona-tagline">Owns enterprise facilities strategy</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Operational consistency across the system, defensible compliance posture, capital plan credibility with the CFO and board.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">No single operational view across markets. Spends too much time aggregating data manually to answer executive questions.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Operational governance," "system of record," "defensibility," "standardization at scale."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">PM compliance %, survey readiness score, capital plan execution, deferred maintenance trend.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">Director Facilities Operations</div>
+          <div class="persona-tagline">Owns day-to-day operational execution</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Work order throughput, vendor coordination, technician productivity, completing the PM schedule on time.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">Tooling that creates more documentation work than it removes. Reactive culture, no time to get ahead.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Workflow governance," "vendor accountability," "PM completion confidence," "operational signal."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">WO completion time, PM compliance, backlog trend, vendor SLA performance.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">HTM Director</div>
+          <div class="persona-tagline">Owns clinical equipment operational integrity</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Clinical equipment uptime, patient safety, regulatory compliance for medical devices, alarm management.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">HTM treated as a cost center. Separate from facilities ops, which limits operational visibility and cross-functional governance.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Clinical equipment lifecycle," "biomed and facilities convergence," "alarm and event governance."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Equipment uptime, PM completion, recall response time, work order resolution by clinical area.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">Clinical Engineering Leader</div>
+          <div class="persona-tagline">Owns biomed program and integration</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Integrating clinical equipment data with the broader operational picture, supporting clinical staff with reliable equipment.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">Operating with limited data infrastructure. Equipment records often live in legacy systems disconnected from the rest of operations.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Integrated operational record," "clinical-facilities alignment," "evidence-based equipment governance."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Mean time to repair, equipment availability, recall closure, PM adherence.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">EOC / Safety Officer</div>
+          <div class="persona-tagline">Owns Environment of Care program</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Joint Commission and DNV survey readiness, environment of care chapter compliance, defensible documentation.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">EOC evidence is fragmented across facilities, safety, security, and EVS. Surveys reveal gaps that operational tools didn't expose in advance.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Survey defensibility," "EOC chapter evidence," "rounding governance," "performance improvement loop."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Survey scores, RFI count, EOC rounding completion, corrective action closure time.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">Capital Planning Leader</div>
+          <div class="persona-tagline">Owns multi-year capital investment</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Defensible prioritization of capital projects, accurate deferred maintenance liability, asset lifecycle data quality.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">Capital decisions made on incomplete operational data. Hard to defend prioritization to the CFO without underlying lifecycle visibility.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Lifecycle defensibility," "capital prioritization framework," "operational data as capital input."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Capital plan execution, deferred maintenance trend, asset condition index, project ROI.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">Support Services Leader</div>
+          <div class="persona-tagline">Owns non-clinical operational services</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Coordination across EVS, transport, food service, security, and facilities. Patient experience as an operational outcome.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">Cross-functional operations live in different tools. Hard to coordinate response and accountability across service lines.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Service line coordination," "operational handoff governance," "patient experience as an operational metric."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Service response time, patient satisfaction scores, cross-functional SLA adherence.</div>
+          </div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-role">Chief Operating Officer</div>
+          <div class="persona-tagline">Owns enterprise operational outcomes</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Cares About</div>
+            <div class="persona-block-value">Operational consistency across the system, margin protection, defensibility under regulatory and board scrutiny.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Likely Frustration</div>
+            <div class="persona-block-value">Operational fragmentation across markets, no single operational truth, limited ability to standardize without imposing top-down friction.</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Strategic Language</div>
+            <div class="persona-block-value">"Enterprise operational governance," "operational coherence," "defensibility," "scale without fragmentation."</div>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">KPIs</div>
+            <div class="persona-block-value">Operating margin, system-level KPI consistency, regulatory standing, capital deployment efficiency.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY NOW -->
+    <section id="whynow">
+      <div class="section-head">
+        <span class="eyebrow">07 · Why Now</span>
+        <h2 class="section-title">Market timing favors operational governance conversations.</h2>
+        <p class="section-lede">Seven concurrent pressures are pushing operational governance from a facilities-level concern to an executive-level conversation. Each one is a wedge into a more strategic dialogue.</p>
+      </div>
+
+      <div class="why-now-grid">
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 01</div>
+          <h4>Staffing Strain</h4>
+          <p>Facilities and HTM staffing shortages are forcing systems to do more with less, raising the value of automation, evidence, and clean handoffs.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 02</div>
+          <h4>Deferred Maintenance</h4>
+          <p>Pandemic-era capital deferrals have created a defendable-but-quantified backlog that boards are starting to ask about explicitly.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 03</div>
+          <h4>Merger Integration</h4>
+          <p>Multiple regional mergers in 2023–2025 (Froedtert ThedaCare, Emplify, Endeavor) are entering peak operational integration windows.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 04</div>
+          <h4>Operational Fragmentation</h4>
+          <p>Health systems are running 6–12 disconnected operational tools per market. Consolidation is no longer a nice-to-have at the executive level.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 05</div>
+          <h4>Compliance Pressure</h4>
+          <p>Joint Commission, DNV, and CMS scrutiny is increasingly evidence-based. Documentation of operational rigor matters more than policy on paper.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 06</div>
+          <h4>Aging Infrastructure</h4>
+          <p>The median age of acute-care facilities is rising. Asset lifecycle data becomes a board-level conversation, not a maintenance department line item.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon">▲ Pressure 07</div>
+          <h4>Capital Constraints</h4>
+          <p>Margin pressure is forcing capital prioritization to be more defensible — every approved project has to displace another credible candidate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+      <div class="section-head">
+        <span class="eyebrow">08 · Recommended Next Steps</span>
+        <h2 class="section-title">A six-step playbook to operationalize this framework.</h2>
+        <p class="section-lede">Sequenced for the next 30–60 days. Each step is independently valuable — even if only the first two are adopted, the targeting quality improves materially.</p>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 01</span>Prioritize Tier-1 systems</h4>
+          <p>Confirm the 24 Tier-1 accounts as the strategic core. Apply daily dial focus against P0 and P1 systems first. Treat Tier-2 as a secondary cadence, not a parallel one.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 02</span>Map stakeholders</h4>
+          <p>For each Tier-1 account, build the 8-persona map: VP Facilities, Director, HTM, Clinical Engineering, EOC, Capital Planning, Support Services, COO. Sales Navigator is sufficient for the first pass.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 03</span>Align trigger events</h4>
+          <p>For each account, identify the current operational trigger (merger, capital project, leadership change, survey cycle). Refresh weekly. The trigger is the reason for the call.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 04</span>Launch executive messaging campaign</h4>
+          <p>Run the five-phase sequence against the top 10 accounts first. Track conversation quality (executive engagement, depth of dialogue) as the leading indicator, not contact count.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 05</span>Build operational POVs</h4>
+          <p>For each Tier-1 account, develop a 1-page operational point of view that captures the trigger, the operational hypothesis, and the executive question. Use as the asset that opens the discovery conversation.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h4><span class="step-num">STEP 06</span>Measure conversation quality vs. volume</h4>
+          <p>Add a "conversation quality" measure alongside dial count: did we reach the executive level, did we surface a real operational topic, did we earn a next step. Volume still matters — but it's no longer the only signal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing" id="closing">
+      <div class="closing-content">
+        <h2>This initiative was designed to improve targeting precision, strategic relevance, and executive alignment across healthcare outreach efforts.</h2>
+        <p>It's not meant to replace activity — dial volume, discipline, and trade-show energy still drive the engine. It's meant to make every conversation count for more by giving the territory a strategic spine.</p>
+        <p>Open to feedback on where this could be sharpened, restructured, or refined further. The strongest version of this framework will be the one shaped by the team using it.</p>
+
+        <div class="signoff">
+          <strong>Kristen</strong>
+          Internal framework · v1.0 · Prepared for leadership review
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// ============================================================
+// ACCOUNT DATA
+// ============================================================
+const ACCOUNTS = [
+  // ============= TIER 1 =============
+  {
+    name: "Sanford Health",
+    states: "SD · ND · MN · IA",
+    statesArr: ["SD","ND","MN","IA"],
+    tier: 1,
+    fit: 96,
+    complexity: "Very High",
+    priority: "P0",
+    enterprise: "Enterprise (multi-year)",
+    flags: ["multi","expansion","rural","regional"],
+    why: "Largest rural health system in the US with ~46 hospitals across the Plains and Upper Midwest. Operational standardization across a geographically distributed footprint is a defining strategic challenge.",
+    triggers: ["Multi-year expansion + Project Sanford construction program","Past Fairview and Marshfield merger talks signal continued scale ambition","Active rural capital deployment"],
+    pains: ["Multi-state operational standardization","HTM coordination across rural sites","EOC consistency at scale","Capital planning across distributed footprint"],
+    personas: ["VP Facilities","HTM Director","Capital Planning","COO Regional"],
+    angle: "How does Sanford operationalize consistency across the most geographically distributed health system in the country — without imposing standardization friction at the local level?"
+  },
+  {
+    name: "Mayo Clinic / Mayo Clinic Health System",
+    states: "MN · WI · IA",
+    statesArr: ["MN","WI","IA"],
+    tier: 1,
+    fit: 98,
+    complexity: "Very High",
+    priority: "P0",
+    enterprise: "Enterprise+",
+    flags: ["amc","expansion","multi","acuity"],
+    why: "Gold-standard academic medical center with multi-billion-dollar Bold Forward Rochester expansion underway. Commissioning and asset lifecycle visibility across new clinical capacity is a strategic operational priority.",
+    triggers: ["Bold Forward Rochester construction program","Continued regional MCHS expansion","Capital project commissioning at unprecedented scale"],
+    pains: ["Capital project asset commissioning","EOC governance across new infrastructure","Multi-tier facility coordination (AMC + community)","Survey defensibility at AMC scale"],
+    personas: ["Director Facilities Ops","Capital Planning","EOC / Safety","HTM Director"],
+    angle: "Bold Forward is one of the largest health-system capital programs in recent memory — how does the operational handoff from construction to operations get governed at that scale?"
+  },
+  {
+    name: "Advocate Health (Advocate Aurora + Atrium)",
+    states: "IL · WI · NC · SC · GA · AL",
+    statesArr: ["IL","WI"],
+    tier: 1,
+    fit: 95,
+    complexity: "Very High",
+    priority: "P0",
+    enterprise: "Enterprise+",
+    flags: ["merger","multi","expansion","regional"],
+    why: "2022 merger of Advocate Aurora and Atrium Health created the 5th largest non-profit health system in the US. Post-merger operational standardization across six states is a multi-year strategic priority.",
+    triggers: ["Ongoing post-merger operational integration","Multi-state operational reconciliation","Continued community hospital acquisitions"],
+    pains: ["Harmonizing facilities operations across markets","Work order governance at enterprise scale","Cross-market EOC consistency","Asset record reconciliation"],
+    personas: ["System VP Facilities","COO Regional","Capital Planning"],
+    angle: "Post-merger systems at Advocate's scale typically hit operational governance friction within 24 months of close — how is that being framed at the enterprise level?"
+  },
+  {
+    name: "Froedtert ThedaCare Health",
+    states: "WI",
+    statesArr: ["WI"],
+    tier: 1,
+    fit: 94,
+    complexity: "High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["merger","multi","regional"],
+    why: "2024 merger of Froedtert Health and ThedaCare. Currently in the high-leverage integration year where two operational stacks are being reconciled across an academic-and-community footprint.",
+    triggers: ["Active 2024 merger integration","System-wide rebranding underway","Operational stack reconciliation in flight"],
+    pains: ["Two legacy operational systems integrating","Work order governance reconciliation","EOC and compliance harmonization","Asset record unification"],
+    personas: ["VP Facilities","Director Facilities Ops","EOC / Safety","COO"],
+    angle: "Most systems coming out of a merger spend the first 12–18 months reconciling operational governance — what's the integration sequencing on the facilities side at Froedtert ThedaCare?"
+  },
+  {
+    name: "Northwestern Medicine",
+    states: "IL",
+    statesArr: ["IL"],
+    tier: 1,
+    fit: 92,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["amc","expansion","multi","acuity"],
+    why: "Academic medical center with continued community hospital acquisitions. Operating model spans high-acuity AMC environments and community campuses — distinct operational governance requirements at each tier.",
+    triggers: ["Continued community hospital acquisition activity","AMC + community integration","Ongoing capital investment programs"],
+    pains: ["AMC + community operational standardization","Acquired facility integration","Multi-tier compliance posture"],
+    personas: ["VP Facilities","Capital Planning","Director Facilities Ops"],
+    angle: "Northwestern's operating model runs across two very different operational profiles — how is operational governance balanced between the AMC core and the community footprint?"
+  },
+  {
+    name: "Avera Health",
+    states: "SD · MN · IA · NE · ND",
+    statesArr: ["SD","MN","IA","ND"],
+    tier: 1,
+    fit: 90,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["rural","multi","regional"],
+    why: "Sioux Falls-based regional system with ~37 hospitals and significant rural and critical-access exposure. Operational coordination across a sparse-but-broad footprint is a structural challenge.",
+    triggers: ["Continued regional expansion","eCARE telehealth program growth","Capital investments in rural sites"],
+    pains: ["Rural distributed facility coordination","Critical-access operational visibility","HTM consistency across rural sites"],
+    personas: ["VP Facilities","HTM Director","COO"],
+    angle: "Avera's footprint is one of the most operationally distributed in the country — how is rural operational governance handled across critical-access and regional sites?"
+  },
+  {
+    name: "UnityPoint Health",
+    states: "IA · IL · WI",
+    statesArr: ["IA","IL","WI"],
+    tier: 1,
+    fit: 89,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Multi-state regional system navigating leadership transition and margin pressure. Operational defensibility under cost discipline is a current strategic priority.",
+    triggers: ["Recent leadership transition","Cost discipline environment","Multi-state operational coordination"],
+    pains: ["Margin pressure on operational budgets","Deferred maintenance visibility","Cross-state operational coherence"],
+    personas: ["VP Facilities","Capital Planning","COO Regional"],
+    angle: "Cost discipline environments are when operational evidence matters most — how is UnityPoint defending the capital plan under current margin pressure?"
+  },
+  {
+    name: "MercyOne / Trinity Health Iowa",
+    states: "IA",
+    statesArr: ["IA"],
+    tier: 1,
+    fit: 88,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Iowa hospital network under Trinity Health corporate umbrella. Aligning Iowa region to Trinity's national operating model creates standardization and integration priorities.",
+    triggers: ["Ongoing alignment to Trinity national operating model","Continued regional integration","Capital coordination with parent system"],
+    pains: ["Trinity playbook alignment","Multi-site operational standardization","Capital prioritization within Trinity framework"],
+    personas: ["VP Facilities","Director Facilities Ops","Capital Planning"],
+    angle: "Operating under Trinity's national framework changes what local operational governance has to look like — how is that alignment being executed in Iowa?"
+  },
+  {
+    name: "University of Iowa Health Care",
+    states: "IA",
+    statesArr: ["IA"],
+    tier: 1,
+    fit: 91,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["amc","expansion","acuity"],
+    why: "State academic medical center with active expansion into the community footprint, including 2023 Mercy Iowa City acquisition. AMC + acquired community integration is the live operational challenge.",
+    triggers: ["2023 Mercy Iowa City acquisition","Continued AMC capital programs","Expansion into community footprint"],
+    pains: ["AMC + acquired community integration","Operational record reconciliation","Multi-tier compliance"],
+    personas: ["VP Facilities","Capital Planning","EOC / Safety"],
+    angle: "Acquiring Mercy Iowa City created an immediate operational integration scope — how is that being sequenced against AMC operational priorities?"
+  },
+  {
+    name: "M Health Fairview",
+    states: "MN",
+    statesArr: ["MN"],
+    tier: 1,
+    fit: 90,
+    complexity: "High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["amc","merger","multi"],
+    why: "U of M and Fairview partnership in active financial restructuring. Past Sanford merger discussions fell through; ongoing portfolio rationalization is the strategic priority.",
+    triggers: ["Failed Sanford merger talks","Active financial restructuring","Portfolio rationalization underway"],
+    pains: ["Portfolio rationalization and asset decisions","Operational defensibility during restructuring","Multi-tier AMC + community footprint"],
+    personas: ["VP Facilities","Capital Planning","COO"],
+    angle: "Portfolio restructuring is when operational evidence matters most — every facility decision has to be defensible. How is operational data feeding that process at M Health Fairview?"
+  },
+  {
+    name: "UW Health",
+    states: "WI · IL",
+    statesArr: ["WI","IL"],
+    tier: 1,
+    fit: 91,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["amc","expansion","multi","acuity"],
+    view: "Madison-based AMC",
+    why: "Madison AMC with northern Illinois expansion. Cross-state AMC operations create governance complexity that legacy regional tools weren't designed for.",
+    triggers: ["Northern Illinois expansion","Continued AMC capital programs","Multi-state operational scaling"],
+    pains: ["Cross-state operational governance","AMC compliance posture","Asset lifecycle across markets"],
+    personas: ["VP Facilities","Director Facilities Ops","EOC / Safety"],
+    angle: "Cross-state AMC operations is a distinct operational pattern — how is UW Health managing operational coherence as the footprint expands beyond Wisconsin?"
+  },
+  {
+    name: "OSF HealthCare",
+    states: "IL · MI",
+    statesArr: ["IL"],
+    tier: 1,
+    fit: 89,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["multi","regional","expansion"],
+    why: "Catholic 16-hospital system with strong innovation orientation (OSF OnCall) and active capital investment. Standardization across Catholic ministry sites is an ongoing strategic priority.",
+    triggers: ["Capital investment programs","OSF OnCall and innovation initiatives","Multi-state ministry footprint"],
+    pains: ["Cross-ministry operational standardization","Innovation-operations alignment","Multi-site asset governance"],
+    personas: ["VP Facilities","Director Facilities Ops","Capital Planning"],
+    angle: "OSF's innovation profile suggests an appetite for operationally sophisticated tooling — how is operational governance being modernized alongside the OnCall program?"
+  },
+  {
+    name: "Endeavor Health",
+    states: "IL",
+    statesArr: ["IL"],
+    tier: 1,
+    fit: 95,
+    complexity: "Very High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["merger","multi","expansion","regional"],
+    why: "2023 merger of NorthShore, Edward-Elmhurst, and Swedish into a unified Chicago-area system, rebranded 2024. Three legacy operational stacks are being unified — peak integration year.",
+    triggers: ["2023 three-way merger integration","2024 rebrand to Endeavor Health","Operational stack reconciliation across three legacy organizations"],
+    pains: ["Three-way operational stack reconciliation","Work order governance unification","Asset record consolidation","EOC harmonization"],
+    personas: ["System VP Facilities","Director Facilities Ops","EOC / Safety","COO"],
+    angle: "A three-way merger creates a uniquely difficult operational integration — how is Endeavor sequencing the reconciliation across three legacy operational stacks?"
+  },
+  {
+    name: "Rush University System for Health",
+    states: "IL",
+    statesArr: ["IL"],
+    tier: 1,
+    fit: 93,
+    complexity: "Very High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["amc","expansion","acuity"],
+    why: "Chicago AMC with high-acuity case mix, active capital programs, and Rush Generations expansion. AMC EOC complexity and research-facility maintenance are operational defining features.",
+    triggers: ["Capital programs and Rush Generations expansion","High-acuity AMC operating profile","Research facility maintenance program"],
+    pains: ["AMC compliance defensibility","Research facility operational complexity","High-acuity EOC governance"],
+    personas: ["VP Facilities","EOC / Safety","Capital Planning"],
+    angle: "AMC environments carry survey defensibility pressure that community systems don't — how is Rush operationalizing EOC evidence across the AMC and research footprint?"
+  },
+  {
+    name: "UChicago Medicine",
+    states: "IL · IN",
+    statesArr: ["IL","IN"],
+    tier: 1,
+    fit: 92,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["amc","expansion","merger","acuity"],
+    why: "Chicago AMC with 2024 acquisition of Powers Health (Community Healthcare System) in northwest Indiana. Cross-state AMC governance is the new operational reality.",
+    triggers: ["2024 Powers Health acquisition","Cross-state expansion into Indiana","Integration of acquired community footprint"],
+    pains: ["Post-acquisition operational standardization","Cross-state operational governance","AMC + community integration"],
+    personas: ["VP Facilities","Capital Planning","COO Regional"],
+    angle: "Powers Health acquisition extends UChicago's AMC operational model across state lines — how is operational governance being sequenced through the integration?"
+  },
+  {
+    name: "Allina Health",
+    states: "MN · WI",
+    statesArr: ["MN","WI"],
+    tier: 1,
+    fit: 89,
+    complexity: "High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Minneapolis-based system facing active financial pressure, including 2024 workforce reductions. Operational efficiency and cost discipline are board-level priorities.",
+    triggers: ["2024 financial restructuring and layoffs","Active cost discipline environment","Operational efficiency mandates"],
+    pains: ["Cost discipline impact on operational budgets","Deferred maintenance visibility under pressure","Operational evidence for capital defense"],
+    personas: ["VP Facilities","Capital Planning","Director Facilities Ops","COO"],
+    angle: "Cost-discipline environments raise the bar on operational evidence — how is Allina defending capital and operational decisions to the board under current pressure?"
+  },
+  {
+    name: "Essentia Health",
+    states: "MN · WI · ND",
+    statesArr: ["MN","WI","ND"],
+    tier: 1,
+    fit: 92,
+    complexity: "High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["expansion","multi","regional"],
+    why: "Duluth-based regional system, opened Vision Northland flagship hospital in 2023 — one of the most significant new acute-care builds in the Upper Midwest. Commissioning and lifecycle governance are live.",
+    triggers: ["Vision Northland hospital opened 2023","Ongoing capital programs across the region","Multi-state operational coordination"],
+    pains: ["New flagship hospital commissioning","Asset lifecycle from day one at Vision Northland","System-wide operational standardization"],
+    personas: ["VP Facilities","Capital Planning","EOC / Safety"],
+    angle: "Vision Northland is operating-room-fresh — how is the asset lifecycle data carrying forward from commissioning into ongoing operations across the system?"
+  },
+  {
+    name: "HealthPartners / Park Nicollet",
+    states: "MN · WI",
+    statesArr: ["MN","WI"],
+    tier: 1,
+    fit: 88,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Integrated payer-provider system with ~25 hospitals. Operational alignment between insurance and care delivery operations creates distinct governance requirements.",
+    triggers: ["Integrated care model expansion","Continued ambulatory and clinic growth","Multi-state operational coordination"],
+    pains: ["Payer-provider operational alignment","Multi-site facility coordination","Ambulatory + acute operational consistency"],
+    personas: ["VP Facilities","Director Facilities Ops","Support Services"],
+    angle: "Integrated payer-provider operations carry different governance pressure than a pure delivery system — how is operational consistency framed across HealthPartners' integrated model?"
+  },
+  {
+    name: "CentraCare",
+    states: "MN",
+    statesArr: ["MN"],
+    tier: 1,
+    fit: 86,
+    complexity: "Medium-High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["rural","multi","regional","expansion"],
+    why: "St. Cloud-based regional system with Carris Health affiliate. Rural expansion across central Minnesota creates distributed facility coordination requirements.",
+    triggers: ["Carris Health affiliation","Rural expansion across central MN","Capital investment in regional sites"],
+    pains: ["Rural distributed facility coordination","Multi-site operational standardization","HTM consistency across rural sites"],
+    personas: ["VP Facilities","HTM Director","Director Facilities Ops"],
+    angle: "Rural healthcare networks have distinct operational governance needs — how is CentraCare maintaining consistency across the Carris and central MN footprint?"
+  },
+  {
+    name: "Carle Health",
+    states: "IL · IA · IN",
+    statesArr: ["IL","IA","IN"],
+    tier: 1,
+    fit: 87,
+    complexity: "Medium-High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["expansion","multi","regional"],
+    why: "Urbana-based growing regional system with cross-state expansion and Health Alliance insurance arm. Growth-phase standardization is the strategic operational priority.",
+    triggers: ["Continued multi-state expansion","Health Alliance operational integration","Capital programs across markets"],
+    pains: ["Growth-phase operational standardization","Cross-state operational governance","Payer-provider operational alignment"],
+    personas: ["VP Facilities","Capital Planning","Director Facilities Ops"],
+    angle: "Growth phases are when operational standardization is hardest to retrofit later — how is Carle approaching that as the cross-state footprint expands?"
+  },
+  {
+    name: "Emplify Health (Bellin + Gundersen)",
+    states: "WI · MN · IA",
+    statesArr: ["WI","MN","IA"],
+    tier: 1,
+    fit: 93,
+    complexity: "Very High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["merger","multi","regional"],
+    why: "2024 merger of Bellin Health and Gundersen Health into a unified Upper Midwest system. Active integration year — two legacy operational stacks being reconciled across an academic-and-community footprint.",
+    triggers: ["2024 Bellin + Gundersen merger","Active integration year","System-wide rebranding (Emplify)"],
+    pains: ["Two legacy operational stacks integrating","Work order governance reconciliation","EOC and compliance harmonization","Cross-state operational coherence"],
+    personas: ["System VP Facilities","Director Facilities Ops","EOC / Safety","COO"],
+    angle: "Integration year is when operational governance decisions get locked in for the next decade — how is Emplify sequencing the operational reconciliation between Bellin and Gundersen?"
+  },
+  {
+    name: "SSM Health",
+    states: "MO · IL · OK · WI",
+    statesArr: ["IL","WI","MO"],
+    tier: 1,
+    fit: 88,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Catholic four-state health system with significant Wisconsin and Illinois footprint. Cross-state Catholic ministry standardization is an ongoing strategic operational priority.",
+    triggers: ["Multi-state operational complexity","Continued capital investment","Catholic ministry consolidation"],
+    pains: ["Cross-state operational standardization","Multi-ministry coordination","Asset lifecycle across markets"],
+    personas: ["VP Facilities","Capital Planning","COO Regional"],
+    angle: "Operating across four states requires a different operational governance model than a regional system — how is SSM Health structuring cross-state operational coherence?"
+  },
+  {
+    name: "HSHS (Hospital Sisters Health System)",
+    states: "IL · WI",
+    statesArr: ["IL","WI"],
+    tier: 1,
+    fit: 87,
+    complexity: "High",
+    priority: "P0",
+    enterprise: "Enterprise",
+    flags: ["multi","regional"],
+    why: "Catholic 15-hospital system in active portfolio restructuring, including 2024 Wisconsin hospital closures (Sacred Heart, St. Joseph's). Operational defensibility during restructuring is critical.",
+    triggers: ["2024 Wisconsin hospital closures","Active portfolio rationalization","Financial restructuring underway"],
+    pains: ["Portfolio rationalization decisions","Operational defensibility during restructuring","Capital reallocation across remaining footprint"],
+    personas: ["VP Facilities","Capital Planning","COO"],
+    angle: "Portfolio restructuring is when operational evidence becomes mission-critical — how is operational data feeding HSHS's rationalization decisions?"
+  },
+  {
+    name: "Prime Healthcare Illinois",
+    states: "IL",
+    statesArr: ["IL"],
+    tier: 1,
+    fit: 84,
+    complexity: "High",
+    priority: "P2",
+    enterprise: "Enterprise",
+    flags: ["merger","multi"],
+    why: "For-profit Prime Healthcare acquired Catholic Health Initiatives Illinois facilities. Acquired-facility integration to Prime's operating model is the live integration scope.",
+    triggers: ["Prime acquisition integration ongoing","Catholic facility operational transition","Multi-site reconciliation"],
+    pains: ["Acquired-facility integration to Prime model","Operational stack reconciliation","Capital reallocation"],
+    personas: ["VP Facilities","Director Facilities Ops","Capital Planning"],
+    angle: "Acquired Catholic facilities have to be transitioned to Prime's operating model — how is that integration being sequenced operationally?"
+  },
+
+  // ============= TIER 2 =============
+  {
+    name: "Hennepin Healthcare",
+    states: "MN",
+    statesArr: ["MN"],
+    tier: 2,
+    fit: 80,
+    complexity: "Medium-High",
+    priority: "P1",
+    enterprise: "Mid-market",
+    flags: ["acuity"],
+    why: "Public safety-net system with downtown Minneapolis Level I trauma center. High-acuity case mix and public-sector accountability create distinct operational governance pressure.",
+    triggers: ["Continued capital investment in downtown campus","Public-sector accountability and oversight","High-acuity operational profile"],
+    pains: ["Public-sector capital defensibility","High-acuity operational consistency","Survey readiness under public scrutiny"],
+    personas: ["VP Facilities","EOC / Safety","Capital Planning"],
+    angle: "Public safety-net systems carry operational accountability that for-profit systems don't — how is Hennepin balancing capital defensibility with high-acuity operational demand?"
+  },
+  {
+    name: "North Memorial Health",
+    states: "MN",
+    statesArr: ["MN"],
+    tier: 2,
+    fit: 78,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["regional"],
+    why: "Independent Minneapolis-area regional system. Operating independent of the large MN systems creates strategic positioning around operational efficiency and patient experience.",
+    triggers: ["Independent positioning in consolidating market","Operational efficiency focus","Patient experience as a competitive lever"],
+    pains: ["Operational efficiency vs. larger systems","Independent capital planning","Patient experience as an operational outcome"],
+    personas: ["VP Facilities","Director Facilities Ops","Support Services"],
+    angle: "Staying independent in a consolidating market raises the bar on operational efficiency — how is North Memorial defending the independent model operationally?"
+  },
+  {
+    name: "Children's Minnesota",
+    states: "MN",
+    statesArr: ["MN"],
+    tier: 2,
+    fit: 82,
+    complexity: "High",
+    priority: "P1",
+    enterprise: "Mid-market+",
+    flags: ["acuity"],
+    view: "Pediatric specialty",
+    why: "Independent pediatric specialty system. Pediatric environments carry distinct compliance, infection prevention, and family-experience operational requirements.",
+    triggers: ["Continued pediatric capital programs","Specialty-care operational profile","Infection prevention rigor"],
+    pains: ["Pediatric-specific compliance posture","Infection prevention as an operational discipline","Specialty equipment lifecycle"],
+    personas: ["VP Facilities","EOC / Safety","HTM Director"],
+    angle: "Pediatric specialty environments carry compliance and operational rigor that adult acute-care doesn't — how is Children's Minnesota operationalizing that consistency?"
+  },
+  {
+    name: "Monument Health",
+    states: "SD · WY",
+    statesArr: ["SD"],
+    tier: 2,
+    fit: 77,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["rural","regional"],
+    why: "Rapid City-based regional system serving western SD and northeast WY. Rural multi-state coordination is the operational pattern.",
+    triggers: ["Rural multi-state operational footprint","Continued regional capital programs","Critical-access network management"],
+    pains: ["Rural distributed facility coordination","Cross-state operational consistency","Critical-access governance"],
+    personas: ["VP Facilities","HTM Director"],
+    angle: "Western SD and northeast WY is operationally one of the most distributed footprints in the country — how is Monument coordinating across that geography?"
+  },
+  {
+    name: "Altru Health",
+    states: "ND · MN",
+    statesArr: ["ND","MN"],
+    tier: 2,
+    fit: 81,
+    complexity: "Medium-High",
+    priority: "P1",
+    enterprise: "Mid-market+",
+    flags: ["expansion","regional"],
+    why: "Grand Forks-based system with new flagship hospital construction underway. New asset commissioning and operational handoff are live priorities.",
+    triggers: ["New flagship hospital construction","Capital program execution","Cross-state regional footprint"],
+    pains: ["New hospital commissioning","Asset lifecycle from opening day","Cross-state operational consistency"],
+    personas: ["VP Facilities","Capital Planning","EOC / Safety"],
+    angle: "A new flagship hospital is a one-time chance to set operational governance correctly from day one — how is the operational handoff being structured at Altru?"
+  },
+  {
+    name: "Trinity Health Minot",
+    states: "ND",
+    statesArr: ["ND"],
+    tier: 2,
+    fit: 74,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["rural","regional"],
+    why: "Minot-area regional system. Rural ND operations and Trinity-brand alignment create operational coordination needs.",
+    triggers: ["Continued regional operations","Rural facility coordination","Catholic ministry alignment"],
+    pains: ["Rural operational coordination","Compliance posture under survey","Asset lifecycle visibility"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Rural ND operations have a different operational rhythm — how is Trinity Minot governing facility operations under those conditions?"
+  },
+  {
+    name: "CHI St. Alexius Health",
+    states: "ND",
+    statesArr: ["ND"],
+    tier: 2,
+    fit: 75,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["regional","rural"],
+    why: "CommonSpirit Health affiliate serving Bismarck and central ND. Alignment to CommonSpirit national operating model is an ongoing operational consideration.",
+    triggers: ["CommonSpirit operating model alignment","Regional capital investment","Rural service area coverage"],
+    pains: ["CommonSpirit playbook alignment","Rural operational consistency","Capital prioritization within parent system"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Operating under CommonSpirit changes local operational governance requirements — how is that alignment being executed at St. Alexius?"
+  },
+  {
+    name: "Southern Illinois Healthcare",
+    states: "IL",
+    statesArr: ["IL"],
+    tier: 2,
+    fit: 76,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["regional"],
+    why: "Carbondale-based regional system serving southern IL. Independent operational positioning in a region without major academic competition.",
+    triggers: ["Regional positioning","Continued capital investment","Independent operating model"],
+    pains: ["Independent operational governance","Capital defensibility","Survey readiness"],
+    personas: ["VP Facilities","Capital Planning"],
+    angle: "Independent regional systems carry capital defensibility pressure that integrated systems can spread across markets — how is SIH defending the operational and capital story?"
+  },
+  {
+    name: "Great River Health",
+    states: "IA · IL",
+    statesArr: ["IA","IL"],
+    tier: 2,
+    fit: 74,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["regional"],
+    why: "West Burlington-based regional system serving SE Iowa and western IL. Cross-state community system operating model.",
+    triggers: ["Cross-state regional positioning","Capital investment programs","Community-care operational profile"],
+    pains: ["Cross-state operational consistency","Community-system capital pressure","Survey readiness"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Cross-state community systems balance two regulatory environments — how is Great River managing operational consistency across IA and IL?"
+  },
+  {
+    name: "Broadlawns Medical Center",
+    states: "IA",
+    statesArr: ["IA"],
+    tier: 2,
+    fit: 72,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: [],
+    why: "Public safety-net hospital serving Polk County (Des Moines area). Public-sector operational accountability is the distinctive operating pattern.",
+    triggers: ["Public-sector capital programs","Safety-net operational profile","Continued capital investment"],
+    pains: ["Public-sector capital defensibility","Operational evidence under public scrutiny","Survey readiness"],
+    personas: ["VP Facilities","EOC / Safety"],
+    angle: "Public safety-net hospitals operate under different accountability than private systems — how is Broadlawns defending operational decisions under that scrutiny?"
+  },
+  {
+    name: "Mary Greeley Medical Center",
+    states: "IA",
+    statesArr: ["IA"],
+    tier: 2,
+    fit: 73,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["regional"],
+    why: "Ames-based regional referral center. Independent operational positioning with strong regional referral patterns.",
+    triggers: ["Continued regional operations","Capital investment programs","Regional referral relationships"],
+    pains: ["Independent operational governance","Regional referral coordination","Capital defensibility"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Regional referral centers carry operational complexity that bed count alone doesn't capture — how is Mary Greeley framing operational governance?"
+  },
+  {
+    name: "Prairie Lakes Healthcare System",
+    states: "SD",
+    statesArr: ["SD"],
+    tier: 2,
+    fit: 70,
+    complexity: "Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["rural","regional"],
+    why: "Watertown-based regional system serving NE SD. Rural community healthcare operational profile.",
+    triggers: ["Continued regional operations","Rural capital investment","Critical-access network coordination"],
+    pains: ["Rural operational coordination","Independent capital planning","Survey readiness"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Rural regional systems have a different operational rhythm than urban systems — how is Prairie Lakes balancing operational rigor with rural reality?"
+  },
+  {
+    name: "St. Anthony Regional Hospital",
+    states: "IA",
+    statesArr: ["IA"],
+    tier: 2,
+    fit: 68,
+    complexity: "Low-Medium",
+    priority: "P2",
+    enterprise: "Mid-market",
+    flags: ["rural","regional"],
+    why: "Carroll-based community hospital and regional referral center for west-central Iowa. Independent community-system profile.",
+    triggers: ["Continued regional operations","Independent operational model","Capital investment"],
+    pains: ["Independent operational governance","Community-system capital pressure","Survey readiness"],
+    personas: ["VP Facilities","Director Facilities Ops"],
+    angle: "Independent community hospitals are operationally distinct from any consolidated system — how is St. Anthony defining what good operational governance looks like locally?"
+  }
+];
+
+// ============================================================
+// RENDER ACCOUNTS
+// ============================================================
+const container = document.getElementById('accountsContainer');
+const searchInput = document.getElementById('searchInput');
+const stateFilter = document.getElementById('stateFilter');
+const tierFilter = document.getElementById('tierFilter');
+const priorityFilter = document.getElementById('priorityFilter');
+const resultCount = document.getElementById('resultCount');
+const chips = document.querySelectorAll('.chip');
+const activeFlags = new Set();
+
+function priorityLabel(p) {
+  return { P0: 'P0 · Top Priority', P1: 'P1 · High Priority', P2: 'P2 · Active' }[p] || p;
+}
+
+function renderAccounts() {
+  const search = searchInput.value.toLowerCase().trim();
+  const stateF = stateFilter.value;
+  const tierF = tierFilter.value;
+  const priorityF = priorityFilter.value;
+
+  const filtered = ACCOUNTS.filter(a => {
+    if (search && !a.name.toLowerCase().includes(search) && !a.states.toLowerCase().includes(search)) return false;
+    if (stateF && !a.statesArr.includes(stateF)) return false;
+    if (tierF && a.tier !== parseInt(tierF)) return false;
+    if (priorityF && a.priority !== priorityF) return false;
+    if (activeFlags.size > 0) {
+      for (const f of activeFlags) {
+        if (!a.flags.includes(f)) return false;
+      }
+    }
+    return true;
+  });
+
+  resultCount.textContent = filtered.length;
+
+  const tier1 = filtered.filter(a => a.tier === 1);
+  const tier2 = filtered.filter(a => a.tier === 2);
+
+  let html = '';
+
+  if (tier1.length > 0) {
+    html += `<div class="tier-divider"><h3>Tier 1 · Strategic Core</h3><div class="line"></div><div class="count">${tier1.length} accounts</div></div>`;
+    html += `<div class="account-grid">${tier1.map(renderCard).join('')}</div>`;
+  }
+
+  if (tier2.length > 0) {
+    html += `<div class="tier-divider"><h3>Tier 2 · Active Coverage</h3><div class="line"></div><div class="count">${tier2.length} accounts</div></div>`;
+    html += `<div class="account-grid">${tier2.map(renderCard).join('')}</div>`;
+  }
+
+  if (filtered.length === 0) {
+    html = `<div style="padding: 48px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border); border-radius: var(--radius-md);">No accounts match these filters. Try removing one.</div>`;
+  }
+
+  container.innerHTML = html;
+  attachCardListeners();
+}
+
+function renderCard(a) {
+  const safe = a.name.replace(/[^a-zA-Z0-9]/g, '_');
+  return `
+    <div class="account-card" data-priority="${a.priority}" data-id="${safe}">
+      <div class="acc-head">
+        <div>
+          <div class="acc-name">${a.name}</div>
+          <div class="acc-states">${a.states}</div>
+        </div>
+        <div class="acc-score">
+          <div class="val">${a.fit}</div>
+          <div class="lbl">Fit</div>
+        </div>
+      </div>
+      <div class="acc-tags">
+        <span class="acc-tag complexity">${a.complexity}</span>
+        ${a.flags.includes('merger') ? '<span class="acc-tag trigger">Merger</span>' : ''}
+        ${a.flags.includes('amc') ? '<span class="acc-tag">AMC</span>' : ''}
+        ${a.flags.includes('expansion') ? '<span class="acc-tag trigger">Expansion</span>' : ''}
+        ${a.flags.includes('rural') ? '<span class="acc-tag">Rural</span>' : ''}
+        ${a.flags.includes('multi') ? '<span class="acc-tag">Multi-Hospital</span>' : ''}
+        ${a.flags.includes('acuity') ? '<span class="acc-tag">High Acuity</span>' : ''}
+      </div>
+      <div class="acc-summary">${a.why}</div>
+      <div class="acc-meta-row">
+        <span class="priority-badge" data-p="${a.priority}">${priorityLabel(a.priority)}</span>
+        <span class="expand-hint">Click to expand →</span>
+      </div>
+
+      <div class="acc-detail">
+        <div class="detail-block">
+          <div class="detail-label">Trigger Events</div>
+          <div class="detail-value"><ul>${a.triggers.map(t => `<li>${t}</li>`).join('')}</ul></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Likely Operational Pain</div>
+          <div class="detail-value"><ul>${a.pains.map(p => `<li>${p}</li>`).join('')}</ul></div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Suggested Personas</div>
+          <div class="detail-value">${a.personas.join(' · ')}</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Enterprise Potential</div>
+          <div class="detail-value">${a.enterprise}</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Suggested Outreach Angle</div>
+          <div class="outreach-block">${a.angle}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function attachCardListeners() {
+  document.querySelectorAll('.account-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+  });
+}
+
+[searchInput, stateFilter, tierFilter, priorityFilter].forEach(el => {
+  el.addEventListener('input', renderAccounts);
+  el.addEventListener('change', renderAccounts);
+});
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const flag = chip.dataset.flag;
+    if (activeFlags.has(flag)) {
+      activeFlags.delete(flag);
+      chip.classList.remove('active');
+    } else {
+      activeFlags.add(flag);
+      chip.classList.add('active');
+    }
+    renderAccounts();
+  });
+});
+
+renderAccounts();
+
+// ============================================================
+// SCROLL-TRACKING NAV
+// ============================================================
+const navItems = document.querySelectorAll('.nav-item');
+const sections = ['thesis','approach','accounts','campaign','messaging','personas','whynow','roadmap'];
+
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById(item.dataset.target);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('sidebar').classList.remove('open');
+    }
+  });
+});
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navItems.forEach(n => n.classList.remove('active'));
+      const active = document.querySelector(`.nav-item[data-target="${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) navObserver.observe(el);
+});
+
+// ============================================================
+// REVEAL ON SCROLL
+// ============================================================
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Re-observe newly-rendered cards after filter
+const accountObserver = new MutationObserver(() => {
+  document.querySelectorAll('.account-card').forEach(el => {
+    if (!el.classList.contains('reveal-init')) {
+      el.classList.add('reveal-init', 'visible');
+    }
+  });
+});
+accountObserver.observe(container, { childList: true, subtree: true });
+
+// ============================================================
+// MOBILE NAV
+// ============================================================
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+
+// Close mobile nav on outside click
+document.addEventListener('click', (e) => {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('mobileToggle');
+  if (window.innerWidth < 900 && sidebar.classList.contains('open')
+      && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
